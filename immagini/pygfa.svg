@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 512.00001 512.00001"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="pygfa.svg">
+  <title
+     id="title4405">PyGFA</title>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.08"
+     inkscape:cx="281.31599"
+     inkscape:cy="254.5367"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-grids="true"
+     inkscape:object-paths="true"
+     inkscape:bbox-paths="true"
+     units="px"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="752"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4142" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>PyGFA</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nc-sa/3.0/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Diego Lobba</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:description>The logo of the PyGFA li</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:prohibits
+           rdf:resource="http://creativecommons.org/ns#CommercialUse" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="yellow-python"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <g
+       transform="matrix(0.7636028,-0.64568627,0.64568627,0.7636028,-451.68168,-190.85796)"
+       id="g4377"
+       style="display:inline">
+      <path
+         style="fill:#ffc639;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 343.28001,868.39416 c -50.688,-25.344 -76.03201,-202.75199 -177.408,-228.09599 l -78.847991,0 c -76.031994,0 -76.031994,101.37599 0,101.37599 l 53.503991,0 c 54.09357,-2e-5 50.688,50.688 101.376,126.72 19.88148,29.8222 50.688,76.03199 101.376,76.03199 l 124.50688,-11.11461 c -13.29694,-89.81849 -75.32253,-50.5953 -124.50688,-64.91738 z"
+         id="path4144-5"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccssccc" />
+      <circle
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="path4191-0"
+         cx="77.964996"
+         cy="708.45294"
+         r="12.671999" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="graph"
+     sodipodi:insensitive="true">
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4.29069757;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4299-0"
+       cx="337.96295"
+       cy="199.77779"
+       r="28.60465" />
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4.29069757;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4299-5"
+       cx="57.962963"
+       cy="119.77778"
+       r="28.60465" />
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4.29069757;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4299-5-2"
+       cx="147.96297"
+       cy="389.77777"
+       r="28.60465" />
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4.29069757;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4299-5-9"
+       cx="367.96295"
+       cy="369.77777"
+       r="28.60465" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 167.96296,279.77778 -10,80"
+       id="path4363"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 197.96296,229.77778 110,-30"
+       id="path4371"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 197.96296,259.77778 150,90"
+       id="path4384"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:label="blue python"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-540.36216)"
+     sodipodi:insensitive="true">
+    <g
+       id="g4255"
+       transform="matrix(0.7636028,-0.64568627,0.64568627,0.7636028,-451.68168,349.5042)">
+      <path
+         sodipodi:nodetypes="ccccssccc"
+         inkscape:connector-curvature="0"
+         id="path4144"
+         d="m 156.71999,868.39416 c 50.688,-25.344 76.03199,-202.75199 177.408,-228.09599 l 78.84801,0 c 76.032,0 76.032,101.37599 0,101.37599 l -53.50402,0 c -54.09357,-2e-5 -50.68799,50.688 -101.376,126.72 -19.88148,29.8222 -50.68799,76.03199 -101.37599,76.03199 -76.031995,0 -126.719991,0 -126.719991,-76.03199 z"
+         style="fill:#0000ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <circle
+         r="12.671999"
+         cy="678.31427"
+         cx="422.83203"
+         id="path4191"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="graph-top"
+     sodipodi:insensitive="true">
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4.29069757;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4299"
+       cx="177.96297"
+       cy="249.77779"
+       r="28.60465" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 77.962963,139.77778 79.999997,90"
+       id="path4361"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

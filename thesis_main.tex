@@ -1,0 +1,134 @@
+\documentclass[11pt, a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+
+% required to include the thesis first page
+\usepackage{pdfpages}
+
+% specifying lmodern as default font, uses it on the entire document
+% (before doing this, It used different fonts along the document...)
+\usepackage{lmodern}
+
+% listing required for quote management
+\usepackage{textcomp}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\graphicspath{ {immagini/} }
+
+\usepackage{mathtools}
+
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Listato}
+\renewcommand{\lstlistlistingname}{Elenco dei listati}
+\lstset{upquote=true, breaklines=true, columns=flexible}
+% Thanks to: https://tex.stackexchange.com/questions/64839/how-to-change-listing-caption
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{thesis_citations.bib}
+
+\usepackage[justification=justified]{caption}
+\usepackage[binary-units=true]{siunitx}
+
+%TODO: source https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\newcommand{\addcontent}[1]{\todo[inline,linecolor=green,backgroundcolor=green!25,bordercolor=green,]{#1}}
+
+\newcommand {\pygfa} {\textit{PyGFA }}
+
+\title{\pygfa \\
+	Progettazione ed implementazione di una libreria Python per la gestione
+	di file GFA}
+\author{Diego Lobba}
+
+\begin{document}
+% \maketitle
+\includepdf[pages={1}]{immagini/frontespiziorelazionefinale20162017.pdf}
+
+\tableofcontents
+\listoffigures
+
+\chapter{Panoramica su \pygfa}
+\pygfa è una libreria Python che permette di gestire le informazioni
+contenute in file GFA rappresentandole mediante una struttura a grafo.
+La gestione delle operazioni sul grafo avviene sfruttando una libreria
+preesistente: \emph{networkx}\cite{networkx}, per la quale \pygfa si occupa di fornire
+le interfacce ai metodi.
+
+\pygfa inoltre permette l'attraversamento del grafo mediante interatori
+personalizzati, che considerano solamente archi rappresentanti un
+determinato tipo di connessione (\emph{dovetail overlap}) fra i nodi del
+grafo.
+
+I file GFA\cite{gfa_spec} (Graphical Fragment Assembly) sono file che descrivono	
+i legami fra sequenze genomiche di un organismo. Ogni sequenza
+viene vista come un nodo sul quale possono esserci collegate altre
+sequenze per mezzo di collegamenti. Tali collegamenti possono
+coinvolgere la sequenza secondo due direzioni:
+\begin{itemize}
+	\item la prima, indicata dal simbolo \textbf{+}, considera la
+	sequenza così come appare nella sua definizione all'interno del file,
+	\item la seconda, indicata dal simbolo \textbf{-}, considera la
+	sequenza dopo che su di essa viene effettuata un'operazione di
+	\emph{reverse and complement}.
+\end{itemize}
+
+I file GFA possono arrivare a contenere milioni tra sequenze e collegamenti
+presenti tra di loro, per questo motivo si è voluto sviluppare una libreria
+in grado di gestire tali file permettendo non solo di andare ad effettuare
+operazioni di filtraggio e selezione sulle informazioni contenute, ma
+anche in grado di fornire una serie di strumenti per la loro
+manipolazione ed ulteriore analisi.
+
+\section{RGFA e GfaPy}
+\pygfa non è la sola libreria che gestisce file GFA mediante una struttura a grafo.
+RGFA è una libreria scritta in Ruby creata appositamente per questo scopo e GfaPy
+è l'equivalente riscritta in Python. GfaPy non solo implementa le funzionalità di RGFA,
+ma estende il supporto alla specifica GFA2 (che verrà successivamente illustrata).
+
+Nonostante le somiglianze fra GfaPy e \pygfa, le due librerie non solo differiscono
+a livello implementativo, ma hanno una gestione dei dati completamente diversa.
+Le informazioni in GfaPy continuano a tenere informazioni sulla loro origine (il tipo
+di linea dalla quale provengono). In \pygfa invece le informazioni vengono	
+ricondotte ad un unico livello di astrazione; tutti i collegamenti possiedono tutti
+lo stesso numero di campi, i quali seccessivamente potranno averli definiti o meno
+a seconda del tipo di linea/collegamento. Questo approccio di \pygfa è stato
+preferito per tenere una coerenza generale nei dati usati dal grafo networkx
+sottostante e per avere un'informazione che l'utente della libreria può interpretare
+in senso più ampio; slegato dal concetto che la specifica GFA le assegna, ma
+rappresentante il concetto biologico che tale informazione vuole significare.
+
+\include{ecosistema}
+
+\printbibliography
+
+\listoftodos[TODO]
+
+\end{document}
+
+Il progetto nasce dall’esigenza di poter effettuare varie operazioni su
+un’immagine digitale senza la necessità di utilizzo del proprio terminale
+desktop. Per venire incontro a questa esigenza è stato sviluppato
+l’applicativo per piattaforma mobile, rendendo così possibile la gestione
+delle immagini digitali tramite il proprio dispositivo portatile.
+Dato che gli utenti finali possono avere dispositivi ospitanti diversi
+sistemi operativi, si è voluto sviluppare l’applicativo per le più note
+piattaforme in circolazione: iOS, Android e Universal Windows
+Platform. Quest’ultima è nota per il fatto che evolve il modello di
+Windows Runtime e lo introduce nella memoria centrale unificata
+di Windows 10, garantendo compatibilità con tutti i nuovi dispositivi
+ospitanti questo sistema, tra cui: Smartphone, Tablet e anche
+dispositivi di tipo Desktop. Per sopperire al vincolo relativo
+all’implementazione multipiattaforma si è scelto di utilizzare il
+framework Xamarin.
+Il compito dell’applicativo è quello di poter caricare un’immagine
+dalla galleria del proprio dispositivo, selezionare parte di essa,
+grazie all’inserimento di riquadri spostabili e ridimensionabili
+(denominati bounding box) e inviare l’immagine compressa insieme alle
+coordinate dei riquadri ad un server. Quest’ultimo, una volta decompressa
+l’immagine, potrà effettuare varie operazioni sulle coordinate
+rappresentanti i riquadri inviati quali, per esempio, riconoscimento di
+certi oggetti all’interno di essi. L’immagine inviata è compressa mediante
+algoritmi efficienti, questo per poter ottimizzare i tempi di invio.
