@@ -3,6 +3,9 @@
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
 
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
+
 % required to include the thesis first page
 \usepackage{pdfpages}
 
@@ -100,35 +103,12 @@ sottostante e per avere un'informazione che l'utente della libreria può interpr
 in senso più ampio; slegato dal concetto che la specifica GFA le assegna, ma
 rappresentante il concetto biologico che tale informazione vuole significare.
 
-\include{ecosistema}
+\input{ecosistema}
+
+\input {gfa-spec}
 
 \printbibliography
 
 \listoftodos[TODO]
 
 \end{document}
-
-Il progetto nasce dall’esigenza di poter effettuare varie operazioni su
-un’immagine digitale senza la necessità di utilizzo del proprio terminale
-desktop. Per venire incontro a questa esigenza è stato sviluppato
-l’applicativo per piattaforma mobile, rendendo così possibile la gestione
-delle immagini digitali tramite il proprio dispositivo portatile.
-Dato che gli utenti finali possono avere dispositivi ospitanti diversi
-sistemi operativi, si è voluto sviluppare l’applicativo per le più note
-piattaforme in circolazione: iOS, Android e Universal Windows
-Platform. Quest’ultima è nota per il fatto che evolve il modello di
-Windows Runtime e lo introduce nella memoria centrale unificata
-di Windows 10, garantendo compatibilità con tutti i nuovi dispositivi
-ospitanti questo sistema, tra cui: Smartphone, Tablet e anche
-dispositivi di tipo Desktop. Per sopperire al vincolo relativo
-all’implementazione multipiattaforma si è scelto di utilizzare il
-framework Xamarin.
-Il compito dell’applicativo è quello di poter caricare un’immagine
-dalla galleria del proprio dispositivo, selezionare parte di essa,
-grazie all’inserimento di riquadri spostabili e ridimensionabili
-(denominati bounding box) e inviare l’immagine compressa insieme alle
-coordinate dei riquadri ad un server. Quest’ultimo, una volta decompressa
-l’immagine, potrà effettuare varie operazioni sulle coordinate
-rappresentanti i riquadri inviati quali, per esempio, riconoscimento di
-certi oggetti all’interno di essi. L’immagine inviata è compressa mediante
-algoritmi efficienti, questo per poter ottimizzare i tempi di invio.
