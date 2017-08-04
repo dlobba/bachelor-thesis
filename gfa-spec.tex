@@ -25,13 +25,15 @@ sequenze e collegamenti imponendo un minimo numero di vincoli,
 permettendo all'utilizzatore di impiegarla per la descrizione di dati
 indipendentemente dai dettagli che questi forniscono.
 
-Entrambe le specifiche indicano la stessa formattazione delle linee.
+Entrambe le specifiche adoperano la stessa formattazione delle linee.
 Una linea descrive un'informazione dell'assemblaggio, sia
 essa una sequenza, un collegamento, un insieme di elementi o
 la versione della specifica. In ogni riga, il primo carattere indica
 l'identità della linea stessa cui succedono, separati esclusivamente
 da tabulazioni, gli elementi che costituiscono l'informazione
 che la linea descrive e che prendono il nome di \emph{campi}.
+I campi possono essere definiti o meno, nel qual caso l'assenza
+dell'informazione viene indicata con un asterisco \texttt{*}.
 
 In ogni linea di entrambe le specifiche è possibile descrivere campi
 opzionali (che possono essere predefiniti da una linea o introdotti
@@ -88,9 +90,9 @@ l'informazione presente nel DNA
 è la stessa a parità di estremità, ma in ordine inverso e
 complementato (vedi figura \ref{fig:dna-strand}) (sostituendo
 la citosina con la guanina e
-l'adedina con la timina). Nel caso di RNA la timina
+l'adedina con la timina). Nel caso di RNA alla timina
 si sostituisce l'uracile, ma il processo di formazione del RNA
-prevede anch'egli questa operazione di complementazione
+prevede anch'esso questa operazione di complementazione
 della sequenza.
 
 Ergo, quando si considera una sequenza (nel caso
@@ -104,6 +106,107 @@ che prende il nome di \emph{reverse and complement}.
 
 % GFA1
 \section{Linee GFA1}
-GFA1 è la versione della specifica, essa si concentra nella descrizione
+GFA1 è la prima versione della specifica, essa si concentra nella descrizione
 delle sequenze, collegate tra loro da una relazione di \emph{contenimento}
 o di \emph{successione}.
+
+Le linee previste dalla specifica sono header, segment, link, containment
+e path.
+
+L'header è una riga il cui scopo è quello di indicare la versione della specifica
+in uso, può ripresentarsi più volte all'interno del file per indicare parametri
+opzionali validi per tutti gli elementi. Tale linea viene indicata con il simbolo \texttt{H}.
+
+\subsection{Segment}
+La linea di Segment (indicata con il simbolo \texttt{S}) descrive in termini
+generici una sequenza, la quale può essere definita o no. All'informazione
+viene attribuito un identificativo che deve essere unico in tutto in file.
+A queste proprietà se ne possono aggiungere altre, descritte da campi
+opzionali, tra i quali si citano per ricorrenza la lunghezza (\texttt{LN}) e
+il conto dei \emph{k-meri} (l'insieme di tutte le possibili sottostringhe
+di lunghezza k contenute nella stringa).
+
+\begin{lstlisting}[caption=Una possibile Segment line.]
+S	5	CCCGGGGTAA		LN:i:10
+\end{lstlisting}
+
+\subsection{Link}
+I Link sono il principale tipo di relazione fra due sequenze. Essi
+indicano una sovrapposizione fra le sequenze indicate da due Segment.
+Nello specifico, un Link fra due Segment indica che la parte terminale
+della prima sequenza è coinvolta in una sovrapposizione (\emph{overlap})
+con la seconda. Il termine che descrive esattamente questa situazione
+è \emph{dovetail overlap}. Tale tipologia di collegamente costituisce
+un'informazione di rilievo nell'analisi dell'assemblaggio poichè descrive
+un ``principio'' di susseguirsi fra un insieme di sequenze.
+
+Il link non solo descrive questa situazione, ma indica anche quale
+estremità della sequenza è coinvolta nell'overlap. Ricordando che
+l'informazione contenuta nella struttura elicoidale del DNA è la stessa a parità
+di estremi (ma in senso inverso e complementata), è possibile
+che due sequenze siano contigue (in una situazione di dovetail
+overlap) considerando la loro provenienza da due estremità
+diverse dell'elica (strand).
+Il link permette di esprimere il collegamento considerando anche questa
+particolarità; per farlo esso utilizza un segno ``\texttt{+}'' per indicare
+che la sequenza non necessita di alcun processamento nel suo
+coinvolgimento nella sovrapposizione, mentre utilizza un segno ``\texttt{-}''
+per esplicare la necessità di effettuare un' operazione di reverse
+and complement sulla sequenza prima di poterla considerare
+nell'overlap.
+
+Visto che, come dicevo poc'anzi, un Link descrive una sovrapposizione
+tra la fine della prima sequenza e l'inizio della seconda (indipendentemente
+dai segni associati alle due sequenze coinvolte), ciò da luogo a quattro
+possibili situazioni:
+\begin{itemize}
+	\item la parte destra della prima sequenza si sovrappone con la parte
+		sinistra della seconda (vedi figura \ref{fig:dov-ov}\subref{fig:dov-ov++});
+	\item la parte destra della prima sequenza si sovrappone con la parte
+		destra della seconda (vedi figura \ref{fig:dov-ov}\subref{fig:dov-ov+-});
+	\item la parte sinistra della prima sequenza si sovrappone con la parte
+		sinistra della seconda (vedi figura \ref{fig:dov-ov}\subref{fig:dov-ov-+});
+	\item la parte sinistra della prima sequenza si sovrappone con la parte
+		destra della seconda (vedi figura \ref{fig:dov-ov}\subref{fig:dov-ov--}).
+\end{itemize}
+
+\captionsetup{justification=centering}
+\begin{figure}[h]
+	\begin{subfigure}{.5\linewidth}
+	  \centering
+	  \includegraphics[scale=0.4]{dov_ov_++}
+	  \caption{}
+	  \label{fig:dov-ov++}
+	\end{subfigure}%
+	\begin{subfigure}{.5\linewidth}
+	  \centering
+	  \includegraphics[scale=0.4]{dov_ov_+-}
+	  \caption{}
+	  \label{fig:dov-ov+-}
+	\end{subfigure}%
+	
+	\bigskip%
+	
+	\begin{subfigure}{0.5\linewidth}
+	  \centering
+	  \includegraphics[scale=0.4]{dov_ov_-+}
+	  \caption{}
+	  \label{fig:dov-ov-+}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\linewidth}
+	  \centering
+	  \includegraphics[scale=0.4]{dov_ov_--}
+	  \caption{}
+	  \label{fig:dov-ov--}
+	\end{subfigure}
+	
+	\captionsetup{justification=justified}
+	\caption[Rappresentazione delle posizioni situazioni di dovetail overlap]{\textit{(a)} Dovetail overlap senza bisogno di alterare le sequenze.
+		\textit{(b)}  Dovetail overlap dove la seconda sequenza necessita
+	  		di un'operazione di reverse and complement per sovrapporsi alla prima.
+	  	\textit{(c)} Un'operazione di reverse and complement deve essere eseguita
+	  		sulla prima sequenza, affinchè ci sia un overlap.
+	  	\textit{(d)} Entrambe le sequenze richiedono operazioni di reverse and complement.}
+	\label{fig:dov-ov}
+\end{figure}
+
