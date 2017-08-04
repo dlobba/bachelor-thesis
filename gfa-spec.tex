@@ -201,7 +201,8 @@ possibili situazioni:
 	\end{subfigure}
 	
 	\captionsetup{justification=justified}
-	\caption[Rappresentazione delle posizioni situazioni di dovetail overlap]{\textit{(a)} Dovetail overlap senza bisogno di alterare le sequenze.
+	\caption[Rappresentazione delle possibili situazioni di dovetail overlap]{
+		\textit{(a)} Dovetail overlap senza bisogno di alterare le sequenze.
 		\textit{(b)}  Dovetail overlap dove la seconda sequenza necessita
 	  		di un'operazione di reverse and complement per sovrapporsi alla prima.
 	  	\textit{(c)} Un'operazione di reverse and complement deve essere eseguita
@@ -209,4 +210,15 @@ possibili situazioni:
 	  	\textit{(d)} Entrambe le sequenze richiedono operazioni di reverse and complement.}
 	\label{fig:dov-ov}
 \end{figure}
+
+Oltre a questa considerazione sulle sequenze, il Link fornisce una descrizione
+dell'allineamento, dato da una stringa CIGAR. Una stringa CIGAR è
+una serie di lettere e numeri che descrivono lo stato di somiglianza
+fra le due sequenze.
+
+Tra i campi opzionali che il Link predispone si trova il campo
+\texttt{ID}, mediante il quale è possibile riferirsi a tale
+linea.
+
+
 
