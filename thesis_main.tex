@@ -10,6 +10,7 @@
 % required to include the thesis first page
 \usepackage{pdfpages}
 
+
 % specifying lmodern as default font, uses it on the entire document
 % (before doing this, It used different fonts along the document...)
 \usepackage{lmodern}
@@ -63,7 +64,7 @@ La gestione delle operazioni sul grafo avviene sfruttando una libreria
 preesistente: \emph{networkx}\cite{networkx}, per la quale \pygfa si occupa di fornire
 le interfacce ai metodi.
 
-\pygfa inoltre permette l'attraversamento del grafo mediante interatori
+\pygfa inoltre permette l'attraversamento del grafo mediante iteratori
 personalizzati, che considerano solamente archi rappresentanti un
 determinato tipo di connessione (\emph{dovetail overlap}) fra i nodi del
 grafo.
@@ -99,7 +100,7 @@ a livello implementativo, ma hanno una gestione dei dati completamente diversa.
 Le informazioni in GfaPy continuano a tenere informazioni sulla loro origine (il tipo
 di linea dalla quale provengono). In \pygfa invece le informazioni vengono	
 ricondotte ad un unico livello di astrazione; tutti i collegamenti possiedono tutti
-lo stesso numero di campi, i quali seccessivamente potranno averli definiti o meno
+lo stesso numero di campi, i quali successivamente potranno averli definiti o meno
 a seconda del tipo di linea/collegamento. Questo approccio di \pygfa è stato
 preferito per tenere una coerenza generale nei dati usati dal grafo networkx
 sottostante e per avere un'informazione che l'utente della libreria può interpretare
@@ -109,6 +110,8 @@ rappresentante il concetto biologico che tale informazione vuole significare.
 \input{ecosistema}
 
 \input {gfa-spec}
+
+\input{development}
 
 \printbibliography
 
