@@ -13,7 +13,7 @@ Python è un linguaggio di programmazione ideato da Guido van Rossum
 all'inizio degli anni `90. Python è un linguaggio che si appresta a molteplici
 stili di programmazione, sfruttando caratteristiche del paradigma object
 oriented, funzionale e della programmazione strutturata.
-Tali propietà permetto l'uso del linguaggio in una grande varietà di attività:
+Tali proprietà permetto l'uso del linguaggio in una grande varietà di attività:
 nella creazione di script di automazione di sistema, nella scrittura di
 sistemi web di backend fino allo sviluppo di complesse librerie di analisi numerica
 e machine learning.
@@ -48,14 +48,14 @@ il multithreading e la minimalità per l'uso in ambienti embedded.
 >>> gfa = pygfa.gfa.GFA.from_file("data/sample1.gfa")
 >>> gfa.nodes()
 ['1', '3', '2', '5', '13', '6', '11', '12', '4']
->>> gfa.nodes_connected_components() #calcola i nodi
+>>> pygfa.nodes_connected_components(gfa) #calcola i nodi
 	di ciascuna componente connessa
 ...
 [{'2', '1', '3', '6', '5'}, {'11', '13', '12'}, {'4'}]
 >>> # estrai tutte le componenti connesse
 	con numero di nodi maggiore di 3
 ...
->>> [component for component in gfa.nodes_connected_components()
+>>> [component for component in pygfa.nodes_connected_components(gfa)
 	if len(component) > 3]
 [{'2', '1', '3', '6', '5'}]
 \end{lstlisting}
@@ -156,7 +156,7 @@ che motivano la sua scelta sono:
 		di \pygfa;
 	\item l'ampia documentazione sia della libreria standard che delle librerie esterne,
 		con soluzioni a buona parte dei problemi di programmazione comuni,
-		comportando un'abbassamento dei costi e dei tempi di manutenzione e
+		comportando un abbassamento dei costi e dei tempi di manutenzione e
 		sviluppo dei sistemi.
 \end{itemize}
 
@@ -188,7 +188,7 @@ implementare tale struttura\cite{python-graph}, permette un rapido
 accesso ai nodi e agli archi che li mettono in relazione.
 
 Oltre a specificare un identificativo univoco da assegnare a nodi e archi,
-è possibile definire delle propietà che possono essere dei tipi primitivi
+è possibile definire delle proprietà che possono essere dei tipi primitivi
 o degli oggetti.
 
 \subsection{Tipi di grafo}
@@ -222,7 +222,7 @@ di velocizzare i tempi di sviluppo.
 NetworkX offre la miglior implementazione dei grafi scritta in Python,
 sfruttando dove richiesto librerie matematiche anche di basso livello
 per garantire prestazioni molto alte in termini di velocità. La vasta
-gamma di algoritmi a dispozione, uno sviluppo costantemente
+gamma di algoritmi a disposizione, uno sviluppo costantemente
 attivo\cite{networkx-github} e un'ampia documentazione rendono
 questa libreria un'ovvia candidata per lo sviluppo di \pygfa.
 
@@ -264,13 +264,13 @@ indicando le righe che necessitano ulteriore copertura.
 
 Entrambi gli strumenti sono stati presi in considerazione per via
 della loro facilità di integrazione nello sviluppo, per
-la loro chiarezza nell'espozione degli errori e delle statistiche
+la loro chiarezza nell'esposizione degli errori e delle statistiche
 e per la loro diffusione tra gli sviluppatori.
 
 \subsection{Funzionamento}
 Lo strumento di analisi per la copertura prende in input un programma Python il quale
 viene eseguito linea per linea. Tutti i file coinvolti nel programma
-(poichè contenenti funzioni, classi o variabili usate presenti
+(poiché contenenti funzioni, classi o variabili usate presenti
 nello script) vengono considerati nel calcolo della copertura. La
 misura della copertura avviene sia per singolo file che sull'intero
 insieme di file coinvolti dal programma. La copertura
@@ -328,7 +328,7 @@ il corretto funzionamento di \pygfa.
 Sphinx è uno strumento per la generazione automatizzata di documentazione
 del codice. Grazie a questo strumento è possibile ricavare un manuale
 ben formatto direttamente dal sorgente, il quale deve essere scritto
-secondo un linguaggio ben specifco per indicare elementi di rilievo
+secondo un linguaggio ben specifico per indicare elementi di rilievo
 del codice, come parametri, valori di ritorno, eccezioni,
 note o link.
 
@@ -353,7 +353,7 @@ HTML e di renderla disponibile su \emph{Read the Docs}.
 Read the Docs è una piattaforma online, supportata dalla community,
 appositamente pensata per salvare, catalogare e rendere disponibile
 la documentazione scritta con Sphinx.
-Il sito fornisce un'ambiente Python e permette di collegare la documentazione
+Il sito fornisce un ambiente Python e permette di collegare la documentazione
 direttamente ad un repository di progetto su Github, evitando così di
 dover mantenere aggiornate due copie di un singolo progetto separate.
 Il sito usa l'ambiente Python per generare la documentazione di
@@ -397,7 +397,7 @@ Il programma permette, una volta inizializzato all'interno di una cartella,
 di gestire i file in base ai cambiamenti ad essi effettuati. Per integrare
 un cambiamento apportato ad un file è necessario aggiungerlo a quella
 che viene chiama \emph{staging area}, contenente l'insieme
-di file modificati a partire dall'ultimo stato aggionato del sistema.
+di file modificati a partire dall'ultimo stato aggiornato del sistema.
 Generalmente i file nella staging area sono accomunati da un contesto
 comune (una modifica che coinvolge per lo stesso motivo quello specifico
 insieme di file), ma ai fini del sistema ciò non è un requisito indispensabile.
@@ -455,12 +455,13 @@ Il ruolo che questi due strumenti hanno avuto e avranno nello lo sviluppo
 di \pygfa è \emph{incalcolabile}. Non solo ai fini del salvataggio del
 progetto, della sua gestione e della sua reperibilità, ma anche per la
 possibilità che esso offre di permettere ad un qualsiasi sviluppatore di
-effettuare facillmente una diramazione del codice ai fini di poterlo
+effettuare facilmente una diramazione del codice ai fini di poterlo
 riscrivere in base alle proprie necessità, senza doversi cimentare
 nello sviluppo di un sistema nuovo (\emph{fork}).
 
 % Bandage
 \section{Bandage}
+\label{sec:bandage}
 \nocite{doi:10.1093/bioinformatics/btv383}
 Bandage è un programma per la visualizzazione grafica di grafi
 di assemblaggio. Questo strumento è in grado di visualizzare
@@ -470,3 +471,7 @@ le sequenze, specialmente nei casi di dovetail overlap, che descrivono
 un continuum nel genoma e che per tanto costituiscono un'informazione
 di rilievo per una libreria che si occupa della gestione di questi file.
 
+\section*{Conclusioni}
+In questo capitolo sono stati presentati gli strumenti impiegati nello sviluppo
+di \pygfa, nella fase di test e di documentazione indicando i dettagli
+che si sono rivelati di particolare importanza ai fini implementativi del sistema.
