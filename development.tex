@@ -314,3 +314,82 @@ nella rappresentazione dei dati sarebbe stato troppo elevato e non avrebbe
 permesso di usare efficacemente tutta una serie di operazioni che avrebbero
 avuto senso solo per collegamenti di questo tipo.
 
+\subsection{Attributi della classe Sottografo}
+Le linee che sono rappresentabili dalla classe Sottografo sono i Path,
+gli OGroup e gli UGroup.
+
+Gli OGroup sono l'equivalente GFA2 dei Path, indicando ogni elemento
+e il suo orientamento, a differenza degli UGroup i quali non indicano il
+segno degli elementi che lo compongono.
+
+Visto che i due gruppi in GFA2 indicano un eventuale overlap direttamente
+negli elementi che lo compongono, il campo \texttt{overlaps} del Path
+è stato inserito (in modo analogo al campo \texttt{pos} del containment)
+nei campi opzionali della classe, in modo che sia possibile senza ulteriori operazioni
+ricondurre il dato alla sua descrizione testuale in formato GFA1.
+
+\noindent
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=0.5]{graph_elements_class_diagram}
+	\caption[Diagramma delle classi degli elementi del grafo]{Diagramma delle classi degli elementi del grafo.}
+\end{figure}
+\clearpage
+
+\section{Fase3: rappresentazione del grafo GFA}
+La classe che modella il grafo GFA sfrutta la classe Multigraph offerta
+dalla libreria NetworkX come struttura ospitante gli archi e i nodi individuati
+dalla fase precedente. Il multigrafo è stato scelto in quanto permette
+di inserire più archi tra due nodi $u$ e $v$ inoltre
+le relazioni presenti fra le sequenze non esprimono un senso di direzionalità
+degli archi, perciò si è usato un grafo non diretto.
+A nodi e archi è possibile inserire un qualsiasi tipo di riferimento ad un oggetto specificando
+in fase di inserimento l'attributo del nodo al quale collegare il valore definito; la libreria
+salverà l'informazione in un dizionario, di conseguenza il reperimento del valore
+riferito al campo del nodo avverrà in modo analogo all'accesso ad un dizionario.
+
+Per uniformarsi a tale comportamento \pygfa in fase creazione di nodi ed
+archi estrapola gli attributi del elemento del grafo da inserire (in caso di nodo o arco)
+e li inserisce sotto forma di coppia indice-valore di un dizionario. In questo modo
+è possibile accedere facilmente ai diversi attributi di nodi e archi; inoltre
+tale scelta è stata preferita in quanto questi elementi non hanno un comportamento,
+ma rappresentano solamente un insieme di informazioni con relativi metodi di accesso.
+di conseguenza sarebbe stato inappropriato descriverli mediante una classe.
+\'E bene notare che ciò non vuole significare che le classi che modellano gli elementi
+del grafo ricoprano un ruolo minore, esse sono servite ad astrarre informazioni
+comuni ad elementi diversi tra loro riducendo quella complessità che altrimenti si
+avrebbe avuto al momento di inserire nodi e archi nel grafo GFA.
+I sottografi sono invece contenuti in un dizionario a parte, separato dalla struttura a
+triplice dizionario rappresentata in figura \ref{fig:networkx-dict} a pagina \pageref{fig:networkx-dict};
+il dizionario in questo caso contiene direttamente riferimenti ad oggetti Subgraph i quali
+vengono convertiti in dizionari in base alle necessità dei metodi o dell'utente grazie
+al metodo \texttt{as\_dict()}.
+
+Per l'implementazione del grafo GFA si è scelto di usare la composizione al posto
+di sfruttare l'ereditarietà della classe multigrafo. Tale scelta si è preferita per
+un semplice concetto logico: la classe GFA \emph{sfrutta} un multigrafo senza
+volerlo emulare. Di conseguenza alla classe sono stati forniti i metodi di interfaccia
+alla classe multigrafo oltre ad un metodo di accesso agli archi fornendo
+solamente l'identificativo di un arco.
+
+\subsection{Iteratore sugli archi di dovetail}
+Come accennato a pagina \pageref{sec:link} le sovrapposizioni
+che si sviluppano tra la fine di una sequenza e l'inizio di un'altra sono
+informazioni di rilievo nel contesto dell'assemblaggio del genoma,
+di conseguenza si è cercato di inserire una serie di meccanismi in \pygfa
+che permettessero di distinguere gli archi che possiedono
+il valore \texttt{is\_dovetail} a true, visto che NetworkX non fornisce
+una soluzione a questa necessità (come descritto a pagina \pageref{sec:nx-why-limits}).
+
+Questa funzionalità è stata implementata dalla classe \texttt{DovetailIterator} che
+fornisce una serie di iteratori per scorrere i soli nodi del grafo collegati da archi di
+dovetail overlap.
+\noindent
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=0.5]{gfa_class_diagram}
+	\caption[Diagramma delle classi del grafo GFA]{Diagramma delle classi del grafo GFA.}
+\end{figure}
+\clearpage
+
+
