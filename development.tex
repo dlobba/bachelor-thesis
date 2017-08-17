@@ -368,7 +368,7 @@ al metodo \texttt{as\_dict()}.
 Per l'implementazione del grafo GFA si è scelto di usare la composizione al posto
 di sfruttare l'ereditarietà della classe multigrafo. Tale scelta si è preferita per
 un semplice concetto logico: la classe GFA \emph{sfrutta} un multigrafo senza
-volerlo emulare. Di conseguenza alla classe sono stati forniti i metodi di interfaccia
+volerne emulare le funzionalità. Di conseguenza alla classe sono stati forniti i metodi di interfaccia
 alla classe multigrafo oltre ad un metodo di accesso agli archi fornendo
 solamente l'identificativo di un arco.
 
@@ -391,5 +391,115 @@ dovetail overlap.
 	\caption[Diagramma delle classi del grafo GFA]{Diagramma delle classi del grafo GFA.}
 \end{figure}
 \clearpage
+
+\section{Operazioni sul grafo}
+\pygfa offre una serie di operazioni che è possibile applicare sul grafo
+composto da sequenze (nodi) e relazioni fra due sequenze (archi),
+dividendole in due gruppi applicativi che si distinguono per le modalità
+in cui gli archi vengono considerati nell'esecuzione delle operazioni.
+
+Il primo insieme considera tutti gli archi del grafo, indistintamente dall'essere
+archi di edge, fragment, gap o altro tipo. Queste operazioni sono
+di utilità generale e servono per avere la massima flessibilità nella selezione delle
+informazioni che il grafo contiene.
+
+In questo gruppo troviamo il metodo della classe GFA \texttt{search} che
+restituisce l'insieme di tutti gli elementi del grafo per i quali la funzione fornita
+tra i parametri assume valore true. In questo modo l'utente definendo un
+comparatore  può effettuare una serie di operazioni si ricerca e filtraggio sul grafo.
+
+Inoltre, grazie all'uso della libreria NetworkX, è stato possibile con estrema facilità
+creare delle interfacce ai metodi per l'individuazione delle componenti connesse, sia
+per quanto riguarda la ricerca della componente connessa contente un nodo dato, che
+la ricerca di tutte le componenti connesse presenti nel grafo.
+
+Considerando l'alto livello di astrazione delle informazioni contenute
+nel grafo, per l'utente che intende utilizzare \pygfa come strumento di
+aiuto nella ricostruzione del genoma, è sconveniente andare ad eseguire
+operazioni considerando archi che non sono di dovetail overlap, visto
+che la relazione che essi descrivono è quella di maggior rilievo ai fini
+dell'assemblaggio. Di conseguenza \pygfa come gfapy offre una serie
+di operazioni che considerano esclusivamente archi di dovetail overlap.
+
+\subsection{Operazioni sugli archi di dovetail overlap}
+Gli algoritmi disponibili con NetworkX non permettono l'attraversamento
+del grafo considerando le proprietà degli archi, non è quindi possibile
+direttamente usare i metodi forniti come invece fatto per le operazioni
+che considerano l'intero grafo (come già discusso a pagina \pageref{sec:nx-why-limits},
+quando sono stati presentati i limiti della libreria). Nonostante questo inconveniente, vista
+la natura open source di NetworkX e la licenza favorevole alla sua modifica
+e distribuzione senza vincoli, è stato possibile modificare gli algoritmi necessari
+per l'implementazione delle operazioni richieste. In tutti i casi l'unica modifica
+richiesta per ottenere il risultato atteso consisteva nel modificare
+l'elenco dei nodi considerati in fase di iterazione dell'algoritmo,
+non più considerando l'intera lista di adiacenza del nodo selezionato
+al ``livello'' corrente, ma prendendo in considerazione i nodi adiacenti
+collegati da un arco di dovetail overlap. Visto che l'iteratore personalizzato
+per l'attraversamento di questi archi è stato già sviluppato nella classe
+DovetailIterator ed esteso dalla classe GFA, i metodi di iterazione
+sono già forniti direttamente con il grafo GFA.
+
+\noindent
+\begin{lstlisting}[boxpos=t, numbers=left, language=Python, frame=t, caption=BFS in networkx., label=code:bfs-nx]
+def _plain_bfs(G, source):
+  G_adj = G.adj
+  seen = set()
+  nextlevel = {source}
+    while nextlevel:
+      thislevel = nextlevel
+      nextlevel = set()
+      for v in thislevel:
+        if v not in seen:
+          yield v
+          seen.add(v)
+          nextlevel.update(G_adj[v])
+\end{lstlisting}
+
+\captionsetup{justification=centering}
+\begin{lstlisting}[boxpos=t, language=Python, numbers=left, frame=t, caption=BFS in \pygfa., label=code:bfs-pygfa]
+def _plain_bfs_dovetails(gfa_, source):
+  if source not in gfa_:
+    return ()
+  seen = set()
+  nextlevel = {source}
+  while nextlevel:
+    thislevel = nextlevel
+    nextlevel = set()
+    for v in thislevel:
+      if v not in seen:
+        yield v
+        seen.add(v)
+        nextlevel.update(gfa_.right(v))
+        nextlevel.update(gfa_.left(v))
+\end{lstlisting}
+
+I due listati rappresentano l'implementazione dell'algoritmo BFS (Breadth First Search) presente
+nella libreria NetworkX (listato \ref{code:bfs-nx}) e l'equivalente implementato in \pygfa
+(listato \ref{code:bfs-pygfa}). \'E possibile notare come l'unica differenza fra i due listati
+è presente nella selezione dei nodi da considerare per la prossima iterazione, nelle ultime
+righe di entrambi i listati; mentre in NetworkX viene considerata l'intera lista di adiacenza, in
+\pygfa si sfruttano gli iteratori definiti in DovetailIterator per selezionare gli archi di dovetail overlap
+presenti alle estremità del nodo.
+Questo rappresenta una semplice modifica che si è dovuta effettuare per
+implementare le operazioni di dovetail overlap, in alcuni casi le modifiche
+hanno richiesto più tempo e l'analisi completa dell'operato dell'algoritmo (come nel
+caso dell'algoritmo per la ricerca dei percorsi semplice fra due nodi),
+ma nella maggior parte dei casi le modifiche richieste sono state semplici
+ed intuitive.
+
+Effettuando le modifiche sopra descritte è stato possibile sviluppare
+le seguenti operazioni sugli archi di dovetail overlap:
+\begin{itemize}
+	\item ricerca delle componenti connesse;
+	\item rimozione delle componenti connesse con lunghezza
+		totale delle sequenze al di sotto di un determinato valore di soglia;
+	\item rimozione delle estremità ``morte'', cioè tutti i nodi con
+		grado di ingresso o uscita minore o uguale a 1 e la cui rimozione non causa
+		la divisione di una componente connessa;
+	\item ricerca degli insiemi di percorsi formati da unitig, cioè sequenze
+		le cui estremità sono collegate ad una sola altra sequenza;
+	\item ricerca di tutti i percorsi praticabili per arrivare da un nodo $u$ ad
+		un nodo $v$.
+\end{itemize}
 
 
