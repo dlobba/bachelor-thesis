@@ -87,7 +87,7 @@ Per questo motivo i programmi tendono ad essere ricchi di documentazione,
 sia essa incorporata nel codice che allegata nel manuale.
 Come conseguenza il linguaggio non offre un meccanismo per definire i
 metodi di una classe come privati; in virtù del fatto che l'utilizzatore, avendo
-la piena possibilità di capire il funzionamento del singlo modulo di sistema,
+la piena possibilità di capire il funzionamento del singolo modulo di sistema,
 ha la piena responsabilità delle sue azioni.
 Per aiutare a distinguere elementi del programma che l'autore vorrebbe
 fossero non utilizzati (o utilizzati con particolare consapevolezza) si è
@@ -95,7 +95,7 @@ soliti nominare tali elementi facendo precedere i loro nomi da un singolo
 trattino basso (\emph{weak internal use}). E' possibile imprimere
 maggior enfasi nell'oscuramento di un elemento precedendo
 il suo nome da due trattini bassi, in tal modo l'accesso
-all'elemento avviene precendo il nome della classe al nome dell'elemento.
+all'elemento avviene precedendo il nome della classe al nome dell'elemento.
 
 \captionsetup{justification=centering}
 \begin{lstlisting}[language=Python, frame=topline, caption=Convenzioni per l'uso interno.]
@@ -135,7 +135,7 @@ si sta accedendo), viene lanciata un'eccezione dalla quale si ritorna l'ineguagl
 fra i due oggetti. Questo è ciò che si intende per duck typing.
 
 Questo comportamento permette di avere delle classi molto flessibili,
-visto che la compatibilità fra le classi viene garantita dall'uguaglianza
+visto che la compatibilità fra queste viene garantita dall'uguaglianza
 delle interfacce (se due oggetti sono diversi, ma in un determinato
 contesto hanno lo stesso comportamento, allora possono essere considerati
 simili); ma potenzialmente annulla la simmetria dell'operatore d'uguaglianza.
@@ -334,7 +334,7 @@ secondo un linguaggio ben specifico per indicare elementi di rilievo
 del codice, come parametri, valori di ritorno, eccezioni,
 note o link.
 
-Sphinx è stato creato creato in origine per la documentazione ufficiale
+Sphinx è stato creato in origine per la documentazione ufficiale
 del linguaggio Python\cite{python-doc} e fin da subito si è sparso
 come strumento di aiuto nella documentazione di programmi scritti
 non solo in questo linguaggio, ma anche in molti altri linguaggi supportati,
@@ -384,7 +384,7 @@ di ricerca efficace.
 \section{git e GitHub}
 \nocite{git}
 \emph{git} è un sistema di controllo versione, ideato da Linus Torvalds per
-gestire lo sviluppo del kernel Linux, tra i più utilizzati al mondo.
+gestire lo sviluppo del kernel Linux\cite{wiki:git}, tra i più utilizzati al mondo.
 Esso permette di gestire progetti di ogni dimensione, garantendo velocità,
 coerenza e ripristino fra le diverse tappe di sviluppo di un progetto.
 
@@ -464,9 +464,9 @@ nello sviluppo di un sistema nuovo (\emph{fork}).
 % Bandage
 \section{Bandage}
 \label{sec:bandage}
-\nocite{doi:10.1093/bioinformatics/btv383}
-Bandage è un programma per la visualizzazione grafica di grafi
-di assemblaggio. Questo strumento è in grado di visualizzare
+Bandage\cite{doi:10.1093/bioinformatics/btv383} è un programma
+per la visualizzazione grafica di grafi di assemblaggio.
+Questo strumento è in grado di visualizzare
 grafi descritti da file GFA1, per questo il suo impiego
 è stato di vitale importanza nell'analisi dei collegamenti presenti fra
 le sequenze, specialmente nei casi di dovetail overlap, che descrivono
