@@ -2,7 +2,8 @@
 In questo capitolo verrà descritto il processo di sviluppo
 seguito per l'implementazione di \pygfa, analizzandone le
 fasi principali, descrivendo i problemi incontrati e come sono stati
-affrontati.
+affrontati. Verrà infine fornito un caso di esempio che mostra
+le funzionalità della libreria.
 
 \section{Processo}
 Lo scopo di \pygfa è quello di fornire un ambiente per lo sviluppo
@@ -237,7 +238,7 @@ indicare la mancanza di tale informazione.
 Per determinare gli attributi della classe arco si sono dovuti analizzare i campi
 di tutte le linee che potessero essere riconducibili ad un arco del grafo.
 
-La prima linea da analizzare è stata la linaa Link della specifica GFA1, la quale è
+La prima linea da analizzare è stata la linea Link della specifica GFA1, la quale è
 possibile ricondurla alla linea Edge di GFA2. Si nota dalla tabella \ref{tab:link-analysis}
 l'esistenza di una corrispondenza uno a uno tra i campi della linea Link e quelli
 della linea Edge. I campi della linea Edge contengono anche le posizioni
@@ -502,4 +503,72 @@ le seguenti operazioni sugli archi di dovetail overlap:
 		un nodo $v$.
 \end{itemize}
 
+\newpage
+\section{Esempio}
+Si andrà ora ad illustrare le funzionalità di \pygfa considerando il file GFA
+contenente le informazioni nel listato \ref{code:gfa-es}, che visualizzato
+con la libreria Matplotlib (strumento usato per la visualizzazione dell'intero grafo)
+produce il risultato in figura \ref{fig:plot-matplot}; si sottolinea che tale libreria
+considera il contesto biologico associato alle informazioni, ma visualizza
+solamente gli elementi del grafo e la loro disposizione.
+Per visualizzare il grafo con Bandage, in grado di visualizzare solo archi Link di GFA1,
+il file GFA1 equivalente è stato ottenuto usando la funzione \texttt{dump}
+di \pygfa, la quale è in grado di convertire le informazioni del grafo GFA
+in una delle due specifiche.
+Il risultato finale è in figura \ref{fig:plot-bandage}, si
+può notare come i Gap (per esempio quello tra s8 ed s11)
+non sono visualizzati da questo strumento.
 
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=topline, label={code:gfa-es}, caption=Il file GFA2 usato per l'esempio.]
+S	s1	10	*
+S	s2	10	*
+S	s3	10	*
+S	s4	10	*
+S	s5	10	*
+S	s6	10	*
+S	s7	10	*
+S	s8	10	*
+S	s9	10	*
+S	s10	10	*
+S	s11	10	*
+S	s12	10	*
+S	s13	10	*
+S	s14	10	*
+S	s15	10	*
+S	s16	10	*
+E	ls1s2	s1+	s2+	7	9$	0	2	*
+E	ls2s4	s2+	s4+	7	9$	0	2	*
+E	ls1s3	s1+	s3+	7	9$	0	2	*
+E	ls3s5	s3+	s5+	7	9$	0	2	*
+E	ls4s6	s4+	s6+	7	9$	0	2	*
+E	ls5s6	s5+	s6+	7	9$	0	2	*
+E	ls6s7	s6+	s7+	7	9$	0	2	*
+E	ls7s8	s7+	s8+	7	9$	0	2	*
+E	ls9s10	s9+	s10+	7	9$	0	2	*
+E	ls11s12	s11+	s12+	7	9$	0	2	*
+E	ls12s13	s12+	s13+	7	9$	0	2	*
+E	ls14s15	s14+	s15+	7	9$	0	2	*
+E	ls15s16	s15+	s16+	7	9$	0	2	*
+E	ls16s14	s16+	s14+	7	9$	0	2	*
+G	gs1s9	s1+	s9+	15	*
+G	gs8s11	s8+	s11+	15	*
+\end{lstlisting}
+\end{minipage}
+\captionsetup{justification=justified, singlelinecheck=false}
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{figure}
+	\includegraphics[scale=0.75]{matplot-es}
+	\caption{Visualizzazione del grafo con matplotlib.}
+	\label{fig:plot-matplot}
+	\vspace{1cm}
+	\includegraphics[scale=0.75]{bandage-es}
+	\caption{Visualizzazione del grafo con Bandage.}
+	\label{fig:plot-bandage}
+\end{figure}
+\captionsetup{justification=justified, singlelinecheck=false}
+
+Caricato il grafo estrendo le informazioni dal file \texttt{gfa-es}
+si vsualizzer
