@@ -570,5 +570,195 @@ G	gs8s11	s8+	s11+	15	*
 \end{figure}
 \captionsetup{justification=justified, singlelinecheck=false}
 
-Caricato il grafo estrendo le informazioni dal file \texttt{gfa-es}
-si vsualizzer
+Caricato il grafo estraendo le informazioni dal file \texttt{gfa-es}
+si andrà a presentare il modo in cui queste vengono rappresentate
+mediante dizionari, si procederà successivamente
+con la ricerca delle componenti connesse.
+Si andrà ad illustrare l'operato degli iteratori personalizzati
+cercando i segmenti collegati alle estremità di un nodo
+specifico mediante l'uso i metodi \texttt{left} e \texttt{right}.
+Si procederà quindi con le operazioni sugli archi di dovetail
+individuando le componenti connesse e comparandole
+con il risultato precedentemente ottenuto, per
+poi concludere con i metodi per la ricerca
+delle sequenze di unitig e dei cammini semplici
+che si diramano tra due nodi $u$ e $v$.
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=topline]
+>>> import pygfa
+>>> g = pygfa.gfa.GFA.from_file("..\..\gfa_es.gfa")
+>>> g.nodes()
+['s1', 's2', 's3', 's4', 's5', 's6', ..., 's15', 's16']
+>>> g.node("s1")
+{'nid': 's1', 'sequence': '*', 'slen': 10}
+>>> g.edges(keys=True)
+[('s1', 's2', 'ls1s2'), ('s1', 's3', 'ls1s3'), ..., ('s15', 's16', 'ls15s16')]
+>>> g.edge(("s1", "s2"))
+{'ls1s2': {'eid': 'ls1s2',
+	'from_node': 's1', 'from_orn': '+', 'to_node': 's2', 'to_orn': '+',
+	'from_positions': ('7', '9$'), 'to_positions': ('0', '2'),
+	'alignment': '*', 'distance': None, 'variance': None,
+	'is_dovetail': True, 'from_segment_end': 'R', 'to_segment_end': 'L'}}
+>>> g.edge("ls1s2")
+{'eid': 'ls1s2', 'from_node': 's1', 'from_orn': '+', 'to_node': 's2', 'to_orn': '+',
+	'from_positions': ('7', '9$'), 'to_positions': ('0', '2'),
+	'alignment': '*', 'distance': None, 'variance': None,
+	'is_dovetail': True, 'from_segment_end': 'R', 'to_segment_end': 'L'}
+>>> g.edge("ls1s2")["is_dovetail"]
+True
+\end{lstlisting}
+\end{minipage}
+\captionsetup{justification=justified, singlelinecheck=false}
+La conversione degli elementi del grafo in dizionari ha permesso
+una migliore integrazione nella libreria NetworkX facilitando l'accesso
+alle informazioni del grafo. Di contro tale comportamento non permette di ricalcolare
+automaticamente le informazioni della linea rappresentata in caso di modifica, cioè
+non avendo una classe non è possibile attribuire un comportamento nella
+gestione delle informazioni. Questo vuole significare che l'utente è libero di modificare
+le informazioni, ma è suo compito assumersi la responsabilità che le modifiche
+siano coerenti con il resto dei dati.
+
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=topline, breaklines=true]
+>>> pygfa.nodes_connected_components(g)
+<generator object connected_components at ...>
+>>>  le componenti connesse vengono restituite 
+... # come generatore python
+... # una componenente alla volta.
+... # Per poterle visualizzare
+... # tutte in una unica soluzione e'
+... # necessario inserirle in una lista Python	
+...
+>>> list(pygfa.nodes_connected_components(g))
+[
+	{'s4', 's13', 's10', 's1', 's2',
+		's3', 's9', 's5', 's8', 's12',
+		's11', 's7', 's6'},
+	{'s14', 's15', 's16'}
+]
+\end{lstlisting}
+\end{minipage}
+\captionsetup{justification=justified, singlelinecheck=false}
+I due insiemi presenti all'interno della lista individuano le due componenti
+connesse come mostra la figura \ref{fig:plot-matplot}. Tutti i tipi di archi che collegano
+due nodi vengono presi in considerazione in tale operazione.
+
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=topline]
+>>> g.node("s1")
+{'nid': 's1', 'sequence': '*', 'slen': 10}
+>>> g.neighbors("s1")
+['s2', 's3', 's9']
+>>> g.right("s1")
+['s2', 's3']
+>>> g.left("s1")
+[]
+>>> g.dovetails_neighbors("s1")
+['s2', 's3']
+\end{lstlisting}
+\end{minipage}
+\captionsetup{justification=justified, singlelinecheck=false}
+Dato il nodo $s1$ i nodi adiacenti considerando tutti i tipi di archi sono
+dati dal metodo \texttt{neighbors}, mentre le operazioni successive
+operano considerando solo archi di dovetail. Il metodo \texttt{left} restituisce
+tutte le seguenze in cui è presente un dovetail overlap con la parte
+sinistra della sequenza selezionata ($s1$ in questo caso), mentre il metodo
+\texttt{right} restituisce le sequenze in cui la sovrapposizione avviene con
+la parte destra della sequenza. I nodi adiacenti ad $s1$, considerando solo
+questo tipo di collegamenti fra nodi, sono un sottoinsieme dei nodi individuati
+dal metodo \texttt{neighbors}.
+
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=topline]
+>>> list(pygfa.dovetails_nodes_connected_components(g))
+[
+	{'s4', 's2', 's1', 's3', 's5', 's6', 's8', 's7'},
+	{'s9', 's10'},
+	{'s13', 's12', 's11'},
+	{'s16', 's14', 's15'}
+]
+\end{lstlisting}
+\end{minipage}
+\captionsetup{justification=justified, singlelinecheck=false}
+Le componenti connesse considerando gli archi di
+dovetail sono più numerose rispetto quelle trovate
+senza fare distinzione fra i legami dei nodi. Infatti si può
+notare che gli archi di gap $(s9, s1)$ e $(s8, s13)$ non sono
+presi in considerazione, facendo così aumentare il numero
+totale delle componenti connesse. 
+
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=topline]
+>>> g.dovetails_linear_path_iter("s3")
+<generator object DovetailIterator.dovetails_linear_path_traverse_edges_iter at ...>
+>>> list(g.dovetails_linear_path_iter("s3"))
+[('s3', 's5')]
+>>> list(pygfa.dovetails_linear_paths(g))
+[
+	[('s4', 's2')],
+	[('s15', 's14'), ('s14', 's16')],
+	[('s13', 's12'), ('s12', 's11')],
+	[('s9', 's10')],
+	[('s5', 's3')],
+	[('s7', 's8')]
+]
+>>> list(pygfa.dovetails_linear_paths(g, keys=True))
+[
+	[('s4', 's2', 'ls2s4')], 
+	[('s15', 's14', 'ls14s15'), ('s14', 's16', 'ls16s14')],
+	[('s13', 's12', 'ls12s13'), ('s12', 's11', 'ls11s12')],
+	[('s9', 's10', 'ls9s10')],
+	[('s5', 's3', 'ls3s5')],
+	[('s7', 's8', 'ls7s8')]
+]
+\end{lstlisting}
+\end{minipage}
+\captionsetup{justification=justified, singlelinecheck=false}
+L'iteratore sulle sequenze di unitig è un metodo
+della classe GFA che restituisce gli archi che costituiscono il percorso
+lineare contenente il nodo indicato come parametro.
+La funzione per ricercare tutti i percorsi lineari sfrutta
+gli iteratori sugli unitig per cercare l'insieme di tutte le sequenze
+di unitig presenti nel grafo; alle tuple di nodi che compongono gli archi
+che denotano i percorsi lineari è possibile associare anche il nome specifico
+degli archi, in modo da distinguerli in presenza di più archi tra due nodi.
+
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=topline]
+>>> list(pygfa.dovetails_all_simple_paths(g, "s2", "s7"))
+[
+	['s2', 's1', 's3', 's5', 's6', 's7'],
+	['s2', 's4', 's6', 's7']
+]
+>>> list(pygfa.dovetails_all_simple_paths(g, "s2", "s7", edges=True, keys=True))
+[
+	[('s2', 's1', 'ls1s2'), ('s1', 's3', 'ls1s3'),
+		('s3', 's5', 'ls3s5'), ('s5', 's6', 'ls5s6'),
+		('s6', 's7', 'ls6s7')],
+	[('s2', 's4', 'ls2s4'), ('s4', 's6', 'ls4s6'),
+		('s6', 's7', 'ls6s7')]
+]
+>>> list(pygfa.dovetails_all_simple_paths(g, "s2", "s11"))
+[]
+\end{lstlisting}
+\end{minipage}
+\captionsetup{justification=justified, singlelinecheck=false}
+Nell'esempio si vogliono trovare tutti i percorsi che congiungono
+il nodo $s2$ al nodo $s7$, la funzione ritorna le liste dei nodi che individuano
+i percorsi di congiunzione. Impostando l'attributo \texttt{edges}
+a True la funzione ritorna le sequenze di archi dei percorsi.
+Nel caso non sia presente un percorso fra i due nodi specificati, la funzione
+ritorna un generatore privo di elementi, che viene convertito
+dalla funzione \texttt{list} in una lista vuota.
