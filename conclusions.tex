@@ -1,0 +1,80 @@
+\chapter{Conclusioni}
+In questo capitolo si riassumerà lo stato di sviluppo
+di \pygfa, i problemi che ancora si riscontrano e di come
+sarebbe possibile risolverli. Verranno infine presentate
+le conclusioni personali sull'attività di stage presentando
+ciò che si è imparato nel suo sviluppo.
+
+\section{Prima release di \pygfa}
+\begin{wrapfigure} {O} {0.4\linewidth}
+	\begin{centering}	
+		\includegraphics[scale=0.5]{pygfa}
+		\caption[Logo di \pygfa]{Logo di \pygfa.}
+	\end{centering}
+\end{wrapfigure}
+\pygfa è alla sua prima release stabile, la copertura dei test
+scritti si appresta sopra il 95\% e il numero di issue individuate
+da PyLint si aggira sulle 280 ottenendo un voto dallo strumento
+di 8,5/10.
+Molta parte del lavoro è stata dedicata nel fornire un
+ambiente che ricordasse NetworkX, sia per facilitare l'utilizzatore
+sia per aiutare il futuro programmatore ad integrare nuovi moduli
+della libreria nel sistema.
+Il processo di sviluppo adottato ha aiutato a favorire i cambiamenti,
+ad adottare strategie migliori man mano che le conoscenze aumentavano;
+per questo la struttura della libreria risulta essere divisa in due metodologie
+di integrazione delle funzioni di NetworkX. I primi algoritmi, riscritti
+affinché venissero considerati solo archi di dovetail, sono delle
+copie degli equivalenti offerti dalla libreria, modificati dei soli
+nodi considerati durante le iterazioni; gli ultimi
+sono stati invece pensati per essere riutilizzati da un qualsiasi iteratore
+personalizzato, sfruttando la capacità del linguaggio di passare
+funzioni (l'iteratore stesso) come parametri. Per questo motivo
+\pygfa necessita di una fase di refactoring più profonda, che stabilisca
+una struttura unica da rispettare.
+
+L'astrazione dei dati rappresentati nel grafo è un altro problema
+degno di nota, visto che in alcune situazioni genera ambiguità riguardo
+le linee delle specifiche dalle quali le informazioni provengono.
+Si può pensare di aggiungere un ulteriore campo agli elementi del grafo
+specificando la provenienza dei dati, evitando così nelle fasi successive
+di fare affidamento allo particolari configurazioni dei dati per risalire
+alla linea di origine.
+
+\section{Conoscenze acquisite}
+Elencare le conoscenze che questo stage ha apportato
+al mio curriculum informatico richiederebbe troppo spazio,
+cercherò di riassumere le competenze acquisite che ritengo più
+importanti. In primo luogo il processo di sviluppo usato: lo stage
+mi ha permesso di lavorare con grande libertà per questo
+un processo di sviluppo agile come extreme programming, 
+che pone lo sviluppo al primo posto, mi ha senza dubbio
+insegnato a gestire al meglio il tempo a disposizione e ad impostare
+fin dal principio un progetto con delle fondamenta solide, ma allo stesso
+tempo flessibili nell'adottare futuri cambiamenti.
+
+Imparare e usare Python durante lo sviluppo si è rivelato più
+difficile del previsto; se da una parte permette una rapida prototipazione
+ed un riscontro immediato delle funzionalità, dall'altra riuscire a
+capire come strutturare un progetto corposo con un linguaggio
+così flessibile richiede molta pratica. Nonostante questi
+dettagli, imparare ad usare questo linguaggio e gli strumenti
+di test di correttezza,  della qualità del codice e della documentazione
+di progetto che gli sono di corredo ha accresciuto notevolmente
+non solo la mia abilità nell'implementazione di un sistema nuovo, ma anche
+l'approccio col quale se ne conduce lo sviluppo.
+
+Concluderei questo capitolo e conseguentemente questa relazione
+con ciò che questo stage mi ha permesso di apprezzare più di
+ogni altra cosa: lo sviluppo di sistemi performanti in grado di
+lavorare con una vasta mole di informazioni quali sono le informazioni
+contenute dai grafi di assemblaggio. Nonostante \pygfa non
+pone molta enfasi sulle prestazioni è stato possibile
+capire i contesti e le situazioni nei quali un linguaggio di alto
+livello come Python risulta più indicato rispetto un linguaggio
+di basso livello come il C e viceversa.
+
+
+
+
+
