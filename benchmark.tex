@@ -1,0 +1,98 @@
+\chapter{Benchmark}
+In questo breve capitolo verranno mostrati
+alcuni risultati di \pygfa evidenziando il tempo di calcolo
+richiesto per alcune delle operazioni che la libreria fornisce e misurando
+lo spazio di memoria richiesto per l'immagazzinamento del grafo.
+
+Tutte le operazioni sono state effettuate su una macchina virtuale
+Linux 64bit con le seguenti caratteristiche:
+\begin{itemize}
+	\item \SI{8}{\giga\byte} di ram;
+	\item processore host da \SI{3.7}{\giga\hertz} quad-core, il
+		sistema guest sfrutta due soli core;
+	\item hard disk magnetico.
+\end{itemize}
+
+Le misure sono state effettuate su grafi generati casualmente
+da uno script usato nello sviluppo di gfapy; il programma
+crea una serie di nodi collegati tra loro da sovrapposizioni
+a coda di rondine, il risultato viene salvato in un file GFA1.
+Visto che i grafi sono generati casualmente è improbabile
+che si riesca a ripresentare la stessa configurazione di componenti
+connesse e sequenze di unitig (a meno di salvare i file generati),
+mentre il numero di nodi e archi rimane prestabilito al ripetersi
+dei test. Per \emph{elementi del grafo}, nel contesto dei grafici presentati,
+si intendono l'insieme di nodi e archi del grafo.
+Per automatizzare la misurazione delle performance è stato
+scritto un programma che si occupa di generare automaticamente
+i grafi, effettuare le misurazioni, salvare i risultati su un file di testo
+e rimuovere i grafi creati al termine.
+
+Le operazioni che si sono andate a misurare sono:
+\begin{itemize}
+	\item il tempo impiegato per effettuare il parsing del file contenente il grafo;
+	\item il tempo richiesto per ottenere i dizionari contenenti i nodi e gli archi;
+	\item il tempo per calcolare le componenti connesse (sia considerando
+		solo archi di dovetail sia considerando tutti i tipi di archi)
+		\footnote{In questo caso, visto che lo script genera solo archi a coda
+		di rondine, le componenti connesse individuate saranno le medesime. Si tenga
+		comunque a mente che il tempo misurato riguarda il calcolo di entrambi
+		i tipi di componenti connesse.};
+	\item il tempo richiesto per la ricerca delle sequenze di unitig.
+\end{itemize}
+Oltre alla misura di questi tempi si è andato a misurare il consumo
+di memoria necessario per contenere il grafo GFA.
+\clearpage
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{benchmark_grafi}
+\caption[Grafico a barre dei grafi generati]{Grafici a barre relativi i numeri di nodi e archi dei grafi generati.}
+\end{figure}
+\captionsetup{justification=justified, singlelinecheck=false}
+Per il numero dei nodi dei grafi generati si sono prese in considerazione
+le potenze di dieci generando, all'aumentare dell'esponente, grafi il cui
+numero di nodi ripercorreva i fattori 1, 2.5, 5, 7.5 e 10.
+Si sono creati quindi 25 grafi, raggiungendo la soglia
+del milione di nodi, collegati tra loro da due milioni di archi.
+
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{figure}
+\centering
+\includegraphics[scale=0.75]{benchmark_tempi}
+\caption[Grafici dei tempi di calcolo delle operazioni su grafo]{Misurazioni dei tempi di calcolo.}
+\label{fig:bench-timings}
+\end{figure}
+\captionsetup{justification=justified, singlelinecheck=false}
+I tempi (figura \ref{fig:bench-timings}) indicano un andamento lineare
+per tutte le operazioni eseguite. Il caso peggiore si ha nel caso
+della funzione di ricerca delle sequenze di unitig, la quale deve
+impiega un tempo doppio rispetto la ricerca delle componenti connesse.
+I tempi per la lettura del file sono lineari, si può pensare di ottenere
+un risultato decisamente migliore usando un SSD, visto che
+ha un tempo accesso più veloce.
+
+\clearpage
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{benchmark_memoria}
+\caption[Grafici della memoria occupata dal grafo]{Misurazione della memoria occupata dal grafo.}
+\end{figure}
+\captionsetup{justification=justified, singlelinecheck=false}
+L'uso della libreria NetworkX, come già accennato a pagina \pageref{sec:nx-why-limits},
+comporta una grossa occupazione della memoria. I dati riportati nel grafico
+riguardano il peso del grafo GFA subito dopo la sua creazione da file, senza
+prendere in considerazione la memoria di ``contesto'' necessaria per avviare
+il processo Python e la libreria standard. In totale la memoria occupata
+raggiungeva, nell'ultimo grafo, circa i \SI{4.2}{\giga\byte} raggiungendo
+il limite di \SI{5.1}{\giga\byte} durante la ricerca dei percorsi lineari, operazione
+che si è rivelata essere la più dispendiosa fra quelle misurate.
+
+\section{Conclusioni}
+\pygfa ha gli stessi punti di forza e di debolezza di NetworkX:
+le operazioni sono molto veloci, ma a costo della memoria occupata.
+Nonostante ciò, la rapidità di sviluppo e l'ottima efficienza di questa libreria
+rendono \pygfa un sistema performante molto facile da ampliare e modificare.
