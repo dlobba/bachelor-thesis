@@ -13,7 +13,7 @@ Python è un linguaggio di programmazione ideato da Guido van Rossum
 all'inizio degli anni `90. Python è un linguaggio che si appresta a molteplici
 stili di programmazione, sfruttando caratteristiche del paradigma object
 oriented, funzionale e della programmazione strutturata.
-Tali proprietà permetto l'uso del linguaggio in una grande varietà di attività:
+Tali proprietà permettono l'uso del linguaggio in una grande varietà di attività:
 nella creazione di script di automazione di sistema, nella scrittura di
 sistemi web di backend fino allo sviluppo di complesse librerie di analisi numerica
 e machine learning.
@@ -76,7 +76,7 @@ classi di progetto. Tuttavia, in Python questa proprietà permette
 l'aggiunta di funzionalità alla classe, in modo analogo alla modalità
 \texttt{implements} di Java, rendendo possibile una definizione di
 quelle che in realtà sono le interfacce e le loro implementazioni.
-In \pygfa tale funzionalità è stata applicata per aggiungere le
+In \pygfa \  tale funzionalità è stata applicata per aggiungere le
 funzionalità degli iteratori personalizzati alla classe \texttt{GFA}.
 
 Python è un linguaggio fortemente influenzato dai movimenti
@@ -86,7 +86,7 @@ possa capire le modalità di utilizzo di ogni modulo di cui è composto.
 Per questo motivo i programmi tendono ad essere ricchi di documentazione,
 sia essa incorporata nel codice che allegata nel manuale.
 Come conseguenza il linguaggio non offre un meccanismo per definire i
-metodi di una classe come privati; in virtù del fatto che l'utilizzatore, avendo
+metodi di una classe come privati in virtù del fatto che l'utilizzatore, avendo
 la piena possibilità di capire il funzionamento del singolo modulo di sistema,
 ha la piena responsabilità delle sue azioni.
 Per aiutare a distinguere elementi del programma che l'autore vorrebbe
@@ -116,7 +116,7 @@ all'elemento avviene precedendo il nome della classe al nome dell'elemento.
 \captionsetup{justification=justified}
 
 Una ulteriore convenzione comune al Python e ampiamente considerata
-nello sviluppo di \pygfa è il cosiddetto \emph{duck typing}.
+nello sviluppo di \pygfa \  è il cosiddetto \emph{duck typing}.
 Visto che il Python usa il binding dinamico, le funzioni e i metodi non
 possono verificare il tipo dei parametri passati tramite signature.
 Una possibile soluzione è verificare il tipo del parametro mediante
@@ -232,7 +232,7 @@ Uno svantaggio, dovuto all'implementazione direttamente in Python di
 Networkx, è il consumo piuttosto elevato di memoria richiesto
 per contenere il grafo. Tale peso è dovuto principalmente
 all'uso dei dizionari come struttura di rappresentazione di nodi ed
-archi. In \pygfa tale inconveniente è possibile notarlo specialmente
+archi. In \pygfa \  tale inconveniente è possibile notarlo specialmente
 nei dizionari degli archi, che arrivano ad occupare più
 di \SI{2}{\kilo\byte}.
 
@@ -240,7 +240,7 @@ Un altro aspetto negativo della libreria è che non permette l'impiego degli
 algoritmi considerando le proprietà di archi e nodi. Ciò significa
 che, supponendo di avere degli archi colorati (blu, giallo, rosso),
 non è possibile applicare gli algoritmi solo agli archi di uno specifico
-colore. Per questo in \pygfa si è reso necessario andare a ridefinire
+colore. Per questo in \pygfa \  si è reso necessario andare a ridefinire
 (sfruttando il sorgente) gli algoritmi di interesse andando
 a considerare nell'algoritmo i nodi definiti da un iteratore, che li
 seleziona in base ad una proprietà dell'arco, evitando
@@ -254,7 +254,7 @@ in cui lo script viene lanciato. Ciò vuole significare che un errore
 (esclusi quelli di sintassi) non può essere individuato prima
 della sua esecuzione.
 
-Per questo motivo nello sviluppo di \pygfa si è scelto di scrivere
+Per questo motivo nello sviluppo di \pygfa \  si è scelto di scrivere
 i casi di test con la libreria \emph{unittest}, fornita direttamente
 con l'interprete, e successivamente si sono andati ad analizzare
 gli script dei casi di test con \emph{Coverage.py}.
@@ -314,7 +314,7 @@ Pylint è uno strumento di \emph{controllo}, che fornisce suggerimenti riguardan
 aspetti del codice. Osservare tutti gli avvertimenti e risolvere tutti i problemi
 rilevati avrebbe richiesto un prolungamento dei termini di consegna, oltre che
 costituire un lavoro non prioritario.
-Il suo impiego in \pygfa è voluto per cercare di uniformare una nuova libreria
+Il suo impiego in \pygfa \  è voluto per cercare di uniformare una nuova libreria
 Python con le convenzioni e le pratiche più comuni che la maggior parte degli
 utilizzatori di questo linguaggio si aspettano, fornendo loro un ambiente
 familiare nel quale la complessità non sia data dalla costante ricerca nella
@@ -345,7 +345,7 @@ di scrivere formule matematiche in \LaTeX.
 
 Sphinx permette di generare la documentazione finale nei formati più comuni:
 HTML (con supporto mobile nativo), PDF e EPUB. Solitamente la scelta
-più diffusa (che \pygfa segue) è quella di produrre la documentazione in
+più diffusa (che \pygfa \  segue) è quella di produrre la documentazione in
 HTML e di renderla disponibile su \emph{Read the Docs}.
 
 \phantomsection
@@ -362,7 +362,7 @@ file di testo. La procedura è automatizzata (vedere figura
 \ref{fig:rtd-build}) e il codice HTML risultante viene pubblicato sulla
 piattaforma al termine del processo.
 
-Grazie a Sphinx e Read the Docs è stato possibile documentare \pygfa
+Grazie a Sphinx e Read the Docs è stato possibile documentare \pygfa \ 
 in modo facile e veloce, evitando di costruire soluzioni \emph{ad-hoc}
 per la sua distribuzione e manutenzione e, allo tempo stesso,
 si è riusciti ad ottenere un risultato più che accettabile utilizzando
@@ -420,7 +420,7 @@ dal branch \emph{master}).
 
 La flessibilità di sviluppo che questo strumento offre permette di strutturare
 al meglio le diverse fasi di implementazione di un progetto, in piena coerenza con
-un processo agile o di extreme programming. In \pygfa tale caratteristica
+un processo agile o di extreme programming. In \pygfa \  tale caratteristica
 si è rivelata di fondamentale importanza, permettendo di suddividere
 fasi di refactoring o di ridefinizione della struttura di progetto (operazioni
 molto delicate da un punto di vista della stabilità della libreria) in un

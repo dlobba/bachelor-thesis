@@ -148,7 +148,8 @@ indicano una sovrapposizione fra le sequenze indicate da due Segment.
 Nello specifico, un Link fra due Segment indica che la parte terminale
 della prima sequenza è coinvolta in una sovrapposizione (\emph{overlap})
 con l'inizio della seconda; il termine che descrive esattamente questa situazione
-è \emph{dovetail overlap}. Tale tipologia di collegamento costituisce
+è \emph{dovetail overlap} tradotta in sovrapposizione a coda di rondine.
+Tale tipologia di collegamento costituisce
 un'informazione di rilievo nell'analisi dell'assemblaggio poiché descrive
 un susseguirsi fra due sequenze.
 
@@ -263,7 +264,7 @@ contenitrice.
 \subsection{Path}
 Un Path (indicato dal simbolo \texttt{P}) descrive un susseguirsi di
 sequenze collegate esclusivamente da Link. Indica pertanto un percorso
-all'interno del grafo di sequenze contigue. Queste linee
+di sequenze contigue all'interno del grafo. Queste linee
 indicano esclusivamente gli identificativi e l'orientamento delle sequenze
 coinvolte nel percorso cui seguono l'insieme delle stringhe CIGAR relative
 l'allineamento delle sequenze prese a due a due.
@@ -295,7 +296,7 @@ per la sua applicazione.
 Queste linee sono analoghe ai Segment in GFA1, ai campi viene aggiunto
 un numero intero per descrivere la lunghezza della sequenza.
 La lunghezza non vuole essere l'esatta lunghezza della sequenza, ma
-vuole indicare la grandezza che tale sequenza assume quanto rappresentata
+vuole indicare la grandezza che tale sequenza assume quando rappresentata
 da un programma di disegno (come Bandage, descritto a pagina \pageref{sec:bandage}).
 Nell'indicare le sequenze non viene più richiesto l'uso di caratteri IUPAC\cite{wiki:acid-notation},
 la sequenza può essere descritta con un qualsiasi carattere stampabile,
@@ -328,7 +329,7 @@ si pone il simbolo ``\texttt{\$}'', non farlo costituirebbe un errore.
 
 In questo modo si avrà che una situazione di dovetail overlap
 verrà indicata da un edge in cui le posizioni delle due sequenze
-sono $inizio1=0$ o $fine1 = x\$$ e $inizio2 =0$ o $fine2=y\$$;
+sono  $inizio1=0$ e $fine2=y\$$ o $fine1=x\$$ e $inizio2=0$;
 mentre una situazione di contenimento viene descritta
 da un edge in cui le posizioni delle sequenze sono $inizio1=0$ e 
 $fine1=x\$$ o $inizio2=0$ e $fine2=y\$$. Si osservi che mentre
@@ -395,5 +396,5 @@ la specifica GFA, indicando lo scopo del quale ciascuna versione intende
 occuparsi e descrivendo i concetti che ciascuna linea vuole rappresentare
 nel contesto dell'assemblaggio del genoma. Nel prossimo
 capitolo si procederà nella descrizione del lavoro svolto nello sviluppo
-di \pygfa e di come si è dovuto procedere nella rappresentazione delle
+di \pygfa \  e di come si è dovuto procedere nella rappresentazione delle
 informazioni descritte nelle specifiche.
