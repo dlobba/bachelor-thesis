@@ -6,7 +6,7 @@ affrontati. Verrà infine fornito un caso di esempio che mostra
 le funzionalità della libreria.
 
 \section{Processo}
-Lo scopo di \pygfa è quello di fornire un ambiente per lo sviluppo
+Lo scopo di \pygfa \ è quello di fornire un ambiente per lo sviluppo
 di applicativi in grado di analizzare e manipolare file GFA. Non
 è pertanto un prodotto finito, con casi d'uso definiti e risultati attesi
 con cui è possibile confrontare i risultati. Non si è ritenuto appropriato,
@@ -17,13 +17,13 @@ compromettere la struttura del sistema. Un altro fattore da
 tenere in considerazione è che le mie conoscenze sul significato
 che i dati contenuti nei file GFA e le considerazioni che si potevano dedurre
 da esse sono cresciute con lo sviluppo del sistema stesso. Perciò un'analisi,
-anche se non approfondita, non poteva essere svolta a priori; poiché
+anche se non approfondita, non poteva essere svolta a priori poiché
 avrebbe potenzialmente comportato una serie di ritardi
 nello sviluppo del progetto dovute allo studio dei concetti biologici
 che avrebbe richiesto diverso tempo.
 
 
-Per questi motivi, il processo di sviluppo che si è deciso di utilizzare è di \emph{extreme}
+Per questi motivi il processo di sviluppo che si è deciso di utilizzare è di \emph{extreme}
 \emph{programming}; con fasi di analisi e pianificazione molto veloci,
 dando priorità all'implementazione delle parti essenziali del sistema aventi
 maggior priorità per poi ripetere il procedimento con l'evolversi dei
@@ -33,9 +33,9 @@ costante con i clienti finali (in questo caso i referenti della tesi).
 Affiancata alla parte di implementazione si è svolta la parte di testing,
 che purtroppo non si è riusciti a condurre esattamente nella forma di Test Driven
 Development, ma alla quale è stata data comunque una priorità molto alta
-sia per la verifica delle funzionalità dei metodi, che per la verifica della
+sia per la verifica delle funzionalità dei metodi che per la verifica della
 presenza di errori nel codice, che nel contesto di un linguaggio non compilato,
-quale è il Python, risulta una pratica molto importante per garantire il
+quale è Python, risulta una pratica molto importante per garantire il
 corretto funzionamento del programma.
 
 Nel complesso si è riusciti a seguire abbastanza rigorosamente questi cicli
@@ -47,18 +47,18 @@ quelle porzioni di codice che era possibile migliorare.
 \subsection{Fasi di sviluppo}
 La rappresentazione delle informazioni contenute nei file GFA subisce
 diverse trasformazioni prima di giungere come dato di un nodo, arco o
-sottografo presente in un oggetto grafo GFA. L' iniziale rappresentazione
+sottografo presente in un oggetto grafo GFA. L'iniziale rappresentazione
 testuale di ogni linea viene rappresentata da una classe che ne indica
 il tipo e i valori dei campi che contiene. Successivamente le linee
 vengono convertite in archi, nodi o sottografi e infine nodi e archi
 vengono rappresentati mediante dizionari Python, una volta inseriti
 effettivamente nel grafo. Quest'ultima trasformazione è stata
 adottata per uniformarsi al trattamento dei dati di un grafo in modo analogo
-al modo in cui NetworkX li gestisce, garantendo una facilità di accesso
+a quello in cui NetworkX li gestisce, garantendo una facilità di accesso
 alle informazioni ed evitando che l'utente finale debba adattarsi ad un
 nuovo modo di operare.
 
-\'E possibile suddividere lo sviluppo di \pygfa in tre fasi principali:
+\'E possibile suddividere lo sviluppo di \pygfa \  in tre fasi principali:
 \begin{itemize}
 	\item sviluppo del parser;
 	\item progettazione delle classi di astrazione dei dati GFA;
@@ -87,7 +87,7 @@ attributi degli elementi del grafo.
 
 Nella fase finale si è sviluppata la classe del grafo GFA fornendo
 metodi di inserimento, accesso ed eliminazione sui singoli elementi che
-lo compongono e aggiungendo le interfacce agli algoritmi forniti da Networkx
+lo compongono ed aggiungendo le interfacce agli algoritmi forniti da Networkx
 per eseguire le operazioni sui dati GFA.
 
 \section{Fase1: sviluppo del parser}
@@ -158,7 +158,7 @@ elementi. Nonostante sia possibile estendere GFA2 con nuovi tipi di linee, è be
 che questo lavoro di assegnazione di un ruolo ad ogni linea limita questa funzionalità
 della specifica, in quanto sarebbe necessario capire il ruolo che queste nuove
 linee possono ricoprire nei grafi di assemblaggio e ridefinire i meccanismi con
-cui \pygfa riesce a manipolare queste nuove informazioni. \'E comunque possibile,
+cui \pygfa \  riesce a manipolare queste nuove informazioni. \'E comunque possibile,
 vista la mancanza dei concetti di visibilità privata del linguaggio, andare ad inserire
 queste informazioni direttamente al grafo NetworkX che sta alla base dell'oggetto grafo
 GFA, ma non è possibile garantire la consistenza delle operazioni che è possibile
@@ -169,7 +169,7 @@ Una sequenza costituisce il principale tipo di informazione cui si
 dalle specifiche. Perciò possiamo attribuire alle sequenze (quindi alle linee Segment)
 il ruolo di nodi.
 La linea di header non contiene di per se informazioni che è possibile rappresentare
-su di un grafo. Al momento \pygfa non modella le informazioni che possono essere
+su di un grafo. Al momento \pygfa \  non modella le informazioni che possono essere
 descritte dalle linee di header.
 
 Tutte quelle linee che vedono come protagoniste due sequenze possono essere
@@ -195,10 +195,10 @@ classi i dati provenienti da campi opzionali verranno memorizzate
 all'interno di un dizionario Python e indicate da un unico campo
 \texttt{opt\_fields}; si noti che nonostante il nome, i campi contenuti
 non sono (solamente) riferimenti ai campi opzionali delle specifiche,
-ma si riferiscono ad una qualsiasi informazione
+ma si riferiscono ad una qualsiasi informazione non obbligatoria
 che l'utente vuole aggiungere all'elemento.
 
-Di seguito verrà elencato ciascun campo di ogni linea, la relativa rappresentazione
+Di seguito verrà elencato per ciascun campo di ogni linea la relativa rappresentazione
 in GFA2 e la scelta di come si è deciso di modellare tale campo nell'elemento
 del grafo corrispondente. Per i nomi dei campi si farà riferimento alla nomenclatura
 utilizzata dalla specifica per indicare ciascun campo, si noti
@@ -206,8 +206,6 @@ che alcuni nomi potrebbero subire variazioni in quanto la specifica è attivamen
 in sviluppo e subisce continui cambiamenti. In questa tabella si fa riferimento
 al nome dei campi così come si sono presentati al momento della fase dello
 sviluppo.
-Eventuali cambiamenti apportati negli ultimi periodi (entro la data indicata
-dalla bibliografia) saranno indicati a piè pagina.
 
 \subsection{Attributi della classe Nodo}
 La classe nodo rispecchia senza aggiungere altre complicazioni
@@ -264,7 +262,7 @@ nel Link di conseguenza questi quattro attributi dell'arco rappresentante un lin
 	\label{tab:link-analysis}
 \end{table}
 
-Lo stesso comportamento è stato usato con la linea di Containment. In questo
+Lo stesso comportamento è stato usato con la linea di Containment; in questo
 caso però il campo relativo la posizione di inizio della sequenza contenuta non
 è indicata nell'equivalente linea GFA2 Edge, e tale informazione
 si è rivelata deducibile dalle posizioni di inizio e fine dell'overlap
@@ -278,7 +276,8 @@ Analizzando le altre linee rimanenti in GFA2 (Edge, Gap e Fragment), oltre agli 
 necessari a rappresentare i campi di GFA1, si sono aggiunti gli attributi per
 rappresentare l'inizio e la fine delle posizioni che coinvolgono l'overlap rispettivamente
 per la sequenza di partenza e di arrivo, inoltre l'analisi sulle linee di Gap
-ha richiesto l'aggiunta di attributi relativi la varianza e la distanza che questa linea
+ha richiesto l'aggiunta di attributi relativi la varianza e la distanza tra due gruppi
+di sequenze che questa linea
 descrive. L'unica particolarità da evidenziare è la mancanza di un campo
 analogo ad \texttt{eid} per la linea Fragment.
 
@@ -286,8 +285,8 @@ Si noti che le informazioni, con questo livello di astrazione, rendono difficile
 le linee di Link, da quelle di Edge e di Fragment (le linee di Containment si distinguono
 per la presenza del campo \texttt{pos} all'interno dei campi opzionali dell'arco mentre
 quelle di Gap hanno sempre definiti gli attributi di varianza e distanza che le altre linee
-hanno impostate a \textbf{None}). In questo caso la distinzione fra queste linee avviene avviene come
-segue: gli Edge e i Link avranno il simbolo di asterisco come
+hanno impostate a \textbf{None}). In questo caso la distinzione fra queste linee avviene
+come segue: gli Edge e i Link avranno il simbolo di asterisco come
 identificativo nel caso l'informazione sia mancante,  mentre i Fragment
 non hanno alcun campo che descrive un identificatore che li referenzia, perciò
 il loro campo \texttt{eid} sarà None. Fatta questa distinzione, le linee di Edge se necessario
@@ -295,7 +294,7 @@ possono essere distinte da quelle di Link per la mancanza delle informazioni
 circa le posizioni del overlap fra le sequenze che i Link descrivono.
 
 In aggiunta agli attributi dei campi, si è deciso di aggiungere altre
-tre informazioni per ogni.
+tre informazioni per ogni arco.
 Queste informazioni riguardano nello specifico i Link e gli Edge che
 rappresentano un dovetail overlap (cioè quegli Edge che descrivono un Link).
 Per questo tipo di archi viene impostato un attributo booleano \texttt{is\_dovetail}
@@ -310,7 +309,7 @@ gli attributi riguardanti le estremità sono posti a None.
 Questa scelta ha permesso di andare ad effettuare tutta una serie di operazioni
 sul grafo di notevole importanza ai fini dell'assemblaggio del genoma, visto che
 le sovrapposizioni di dovetail rappresentano un continuum fra sequenze.
-Se non si fosse adoperata questa soluzione il livello di astrazione introdotto da \pygfa
+Se non si fosse adoperata questa soluzione il livello di astrazione introdotto da \pygfa \ 
 nella rappresentazione dei dati sarebbe stato troppo elevato e non avrebbe
 permesso di usare efficacemente tutta una serie di operazioni che avrebbero
 avuto senso solo per collegamenti di questo tipo.
@@ -341,15 +340,15 @@ ricondurre il dato alla sua descrizione testuale in formato GFA1.
 La classe che modella il grafo GFA sfrutta la classe Multigraph offerta
 dalla libreria NetworkX come struttura ospitante gli archi e i nodi individuati
 dalla fase precedente. Il multigrafo è stato scelto in quanto permette
-di inserire più archi tra due nodi $u$ e $v$ inoltre
+di inserire più archi tra due nodi $u$ e $v$, inoltre
 le relazioni presenti fra le sequenze non esprimono un senso di direzionalità
 degli archi, perciò si è usato un grafo non diretto.
 A nodi e archi è possibile inserire un qualsiasi tipo di riferimento ad un oggetto specificando
 in fase di inserimento l'attributo del nodo al quale collegare il valore definito; la libreria
 salverà l'informazione in un dizionario, di conseguenza il reperimento del valore
-riferito al campo del nodo avverrà in modo analogo all'accesso ad un dizionario.
+riferito al campo del nodo avverrà in modo analogo all'accesso ad un dizionario Python.
 
-Per uniformarsi a tale comportamento \pygfa in fase creazione di nodi ed
+Per uniformarsi a tale comportamento \pygfa \  in fase creazione di nodi ed
 archi estrapola gli attributi del elemento del grafo da inserire (in caso di nodo o arco)
 e li inserisce sotto forma di coppia indice-valore di un dizionario. In questo modo
 è possibile accedere facilmente ai diversi attributi di nodi e archi; inoltre
@@ -377,7 +376,7 @@ solamente l'identificativo di un arco.
 Come accennato a pagina \pageref{sec:link} le sovrapposizioni
 che si sviluppano tra la fine di una sequenza e l'inizio di un'altra sono
 informazioni di rilievo nel contesto dell'assemblaggio del genoma,
-di conseguenza si è cercato di inserire una serie di meccanismi in \pygfa
+di conseguenza si è cercato di inserire una serie di meccanismi in \pygfa \ 
 che permettessero di distinguere gli archi che possiedono
 il valore \texttt{is\_dovetail} a true, visto che NetworkX non fornisce
 una soluzione a questa necessità (come descritto a pagina \pageref{sec:nx-why-limits}).
@@ -394,7 +393,7 @@ dovetail overlap.
 \clearpage
 
 \section{Operazioni sul grafo}
-\pygfa offre una serie di operazioni che è possibile applicare sul grafo
+\pygfa \  offre una serie di operazioni che è possibile applicare sul grafo
 composto da sequenze (nodi) e relazioni fra due sequenze (archi),
 dividendole in due gruppi applicativi che si distinguono per le modalità
 in cui gli archi vengono considerati nell'esecuzione delle operazioni.
@@ -407,7 +406,7 @@ informazioni che il grafo contiene.
 In questo gruppo troviamo il metodo della classe GFA \texttt{search} che
 restituisce l'insieme di tutti gli elementi del grafo per i quali la funzione fornita
 tra i parametri assume valore true. In questo modo l'utente definendo un
-comparatore  può effettuare una serie di operazioni si ricerca e filtraggio sul grafo.
+comparatore  può effettuare una serie di operazioni di ricerca e filtraggio sul grafo.
 
 Inoltre, grazie all'uso della libreria NetworkX, è stato possibile con estrema facilità
 creare delle interfacce ai metodi per l'individuazione delle componenti connesse, sia
@@ -415,11 +414,11 @@ per quanto riguarda la ricerca della componente connessa contente un nodo dato, 
 la ricerca di tutte le componenti connesse presenti nel grafo.
 
 Considerando l'alto livello di astrazione delle informazioni contenute
-nel grafo, per l'utente che intende utilizzare \pygfa come strumento di
+nel grafo, per l'utente che intende utilizzare \pygfa  \  come strumento di
 aiuto nella ricostruzione del genoma, è sconveniente andare ad eseguire
 operazioni considerando archi che non sono di dovetail overlap, visto
 che la relazione che essi descrivono è quella di maggior rilievo ai fini
-dell'assemblaggio. Di conseguenza \pygfa come gfapy offre una serie
+dell'assemblaggio. Di conseguenza \pygfa \  come gfapy offre una serie
 di operazioni che considerano esclusivamente archi di dovetail overlap.
 
 \subsection{Operazioni sugli archi di dovetail overlap}
@@ -475,15 +474,16 @@ def _plain_bfs_dovetails(gfa_, source):
 \end{lstlisting}
 
 I due listati rappresentano l'implementazione dell'algoritmo BFS (Breadth First Search) presente
-nella libreria NetworkX (listato \ref{code:bfs-nx}) e l'equivalente implementato in \pygfa
+nella libreria NetworkX (listato \ref{code:bfs-nx}) e l'equivalente implementato in \pygfa \ 
 (listato \ref{code:bfs-pygfa}). \'E possibile notare come l'unica differenza fra i due listati
 è presente nella selezione dei nodi da considerare per la prossima iterazione, nelle ultime
 righe di entrambi i listati; mentre in NetworkX viene considerata l'intera lista di adiacenza, in
-\pygfa si sfruttano gli iteratori definiti in DovetailIterator per selezionare gli archi di dovetail overlap
+\pygfa \  si sfruttano gli iteratori definiti in DovetailIterator per selezionare gli archi di dovetail overlap
 presenti alle estremità del nodo.
 Questo rappresenta una semplice modifica che si è dovuta effettuare per
 implementare le operazioni di dovetail overlap, in alcuni casi le modifiche
-hanno richiesto più tempo e l'analisi completa dell'operato dell'algoritmo (come nel
+hanno richiesto più tempo e si è dovuta effettuare un'analisi
+completa dell'operato dell'algoritmo (come nel
 caso dell'algoritmo per la ricerca dei percorsi semplice fra due nodi),
 ma nella maggior parte dei casi le modifiche richieste sono state semplici
 ed intuitive.
@@ -505,11 +505,11 @@ le seguenti operazioni sugli archi di dovetail overlap:
 
 \newpage
 \section{Esempio}
-Si andrà ora ad illustrare le funzionalità di \pygfa considerando il file GFA
+Si andrà ora ad illustrare le funzionalità di \pygfa \  considerando il file GFA2
 contenente le informazioni nel listato \ref{code:gfa-es}, che visualizzato
 con la libreria Matplotlib (strumento usato per la visualizzazione dell'intero grafo)
 produce il risultato in figura \ref{fig:plot-matplot}; si sottolinea che tale libreria
-considera il contesto biologico associato alle informazioni, ma visualizza
+non considera il contesto biologico associato alle informazioni, ma visualizza
 solamente gli elementi del grafo e la loro disposizione.
 Per visualizzare il grafo con Bandage, in grado di visualizzare solo archi Link di GFA1,
 il file GFA1 equivalente è stato ottenuto usando la funzione \texttt{dump}
@@ -664,7 +664,7 @@ due nodi vengono presi in considerazione in tale operazione.
 \end{lstlisting}
 \end{minipage}
 \captionsetup{justification=justified, singlelinecheck=false}
-Dato il nodo $s1$ i nodi adiacenti considerando tutti i tipi di archi sono
+Dato il nodo $s1$, i nodi adiacenti considerando tutti i tipi di archi sono
 dati dal metodo \texttt{neighbors}, mentre le operazioni successive
 operano considerando solo archi di dovetail. Il metodo \texttt{left} restituisce
 tutte le seguenze in cui è presente un dovetail overlap con la parte
