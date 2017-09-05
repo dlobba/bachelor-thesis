@@ -1,5 +1,5 @@
 \documentclass[11pt, a4paper]{book}
-\errorcontextlines 10000
+%\errorcontextlines 10000
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
@@ -43,7 +43,7 @@
 
 \newcommand{\addcontent}[1]{\todo[inline,linecolor=green,backgroundcolor=green!25,bordercolor=green,]{#1}}
 
-\newcommand {\pygfa} {\textit{PyGFA }}
+\newcommand {\pygfa} {\textit{PyGFA}}
 
 \title{\pygfa \\
 	Progettazione ed implementazione di una libreria Python per la gestione
@@ -58,19 +58,49 @@
 \listoffigures
 
 \chapter{Panoramica su \pygfa}
-\pygfa è una libreria Python che permette di gestire le informazioni
-contenute in file GFA rappresentandole mediante una struttura a grafo.
-La gestione delle operazioni sul grafo avviene sfruttando una libreria
-preesistente: \emph{networkx}\cite{networkx}, per la quale \pygfa si occupa di fornire
-le interfacce ai metodi.
 
-\pygfa inoltre permette l'attraversamento del grafo mediante iteratori
-personalizzati, che considerano solamente archi rappresentanti un
-determinato tipo di connessione (\emph{dovetail overlap}) fra i nodi del
-grafo.
+Il DNA racchiude le informazioni che contraddistinguono gli organismi
+viventi. Esso si può descrivere per mezzo di una stringa composta da quattro
+lettere: A, C, G, T che denotano le quattro basi azotate (adenina, citosina,
+guanina e timina rispettivamente) che costituiscono gli elementi
+fondamentali del DNA stesso. Esso è un identificatore dello stato
+corrente di un organismo, per questo lo studio delle sue variazioni
+è di particolare interesse sia per l'identificazione di malattie,
+che si possono manifestare come variazione di un particolare gene,
+sia nel contesto evolutivo di una specie. A seconda delle necessità
+è possibile sequenziare l'intero genoma di un organismo oppure estrapolare
+le sole sequenze che ne codificano una parte, per esempio una proteina
+particolare.
+
+In principio la tecnica di sequenziamento del DNA più frequente era la tecnica
+Sanger, in grado di restituire sequenze piuttosto lunghe (superiori al migliaio di
+coppie di basi, indicate con il termine \emph{bp}) che permettono la ricostruzione
+dell'intero genoma di un organismo. Questa metodologia permette
+di avere un'alta affidabilità sui dati ottenuti, ma ha degli alti costi d'utilizzo;
+per questo motivo il metodo Sanger viene oggi solitamente utilizzato per
+il sequenziamento completo di un DNA, solitamente richiesto per specie
+dalle quali non si ha ancora un genoma di riferimento.
+
+Negli ultimi anni si stanno diffondendo le cosiddette NGS (Next Generation Sequencing),
+tecniche che permettono di ottenere una grande mole di dati
+a prezzi molto ridotti, se confrontati con il metodo Sanger. Di contro questi
+metodi producono sequenze di lunghezza inferiore, solitamente
+intorno alle centinaia di coppie di basi, per questo motivo l'utilizzo di queste
+tecniche non permette il sequenziamento efficace di DNA molto lunghi o che
+presentano numerose ripetizioni, poiché il loro assemblaggio
+risulterebbe poco affidabile.
+
+Le sequenze ottenute da entrambi i metodi non è garantito
+che siano le une contigue alle altre, di conseguenza è richiesto
+l'uso di algoritmi di allineamento per individuare le parti sovrapposte
+che denotano il proseguimento della stringa di DNA. Le informazioni
+di questi allineamenti vengono salvate su file, seguendo una formattazione
+ben definita, per poi essere processate
+da programmi per l'assemblaggio del genoma.
+
 
 I file GFA\cite{gfa_spec} (Graphical Fragment Assembly) sono file che descrivono	
-i legami fra sequenze genomiche di un organismo. Ogni sequenza
+questo tipo di informazioni. Ogni sequenza
 viene vista come un nodo sul quale possono esserci collegate altre
 sequenze per mezzo di collegamenti. Tali collegamenti possono
 coinvolgere la sequenza secondo due direzioni:
@@ -83,11 +113,22 @@ coinvolgere la sequenza secondo due direzioni:
 \end{itemize}
 
 I file GFA possono arrivare a contenere milioni tra sequenze e collegamenti
-presenti tra di loro, per questo motivo si è voluto sviluppare una libreria
+presenti tra di loro, per questo motivo si è voluto sviluppare una libreria, \pygfa,
 in grado di gestire tali file permettendo non solo di andare ad effettuare
 operazioni di filtraggio e selezione sulle informazioni contenute, ma
 anche in grado di fornire una serie di strumenti per la loro
 manipolazione ed ulteriore analisi.
+
+\pygfa è una libreria Python che permette di gestire le informazioni
+contenute in file GFA rappresentandole mediante una struttura a grafo.
+La gestione delle operazioni sul grafo avviene sfruttando una libreria
+preesistente: \emph{networkx}\cite{networkx}, per la quale vengono
+fornite le interfacce ai metodi.
+
+\pygfa inoltre permette l'attraversamento del grafo mediante iteratori
+personalizzati, che considerano solamente archi rappresentanti un
+determinato tipo di connessione (\emph{dovetail overlap}) fra i nodi del
+grafo.
 
 \section{RGFA e GfaPy}
 \pygfa non è la sola libreria che gestisce file GFA mediante una struttura a grafo.
