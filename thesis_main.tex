@@ -58,7 +58,7 @@
 \listoffigures
 
 \chapter{Panoramica su \pygfa}
-
+\nocite{marx_2013}
 Il DNA racchiude le informazioni che contraddistinguono gli organismi
 viventi. Esso si può descrivere per mezzo di una stringa composta da quattro
 lettere: A, C, G, T che denotano le quattro basi azotate (adenina, citosina,
@@ -74,12 +74,13 @@ particolare.
 
 In principio la tecnica di sequenziamento del DNA più frequente era la tecnica
 Sanger, in grado di restituire sequenze piuttosto lunghe (superiori al migliaio di
-coppie di basi, indicate con il termine \emph{bp}) che permettono la ricostruzione
-dell'intero genoma di un organismo. Questa metodologia permette
+coppie di basi, indicate con il termine \emph{bp}) che permettono una ricostruzione
+meno complessa dell'intero genoma di un organismo. Questa metodologia permette
 di avere un'alta affidabilità sui dati ottenuti, ma ha degli alti costi d'utilizzo;
 per questo motivo il metodo Sanger viene oggi solitamente utilizzato per
-il sequenziamento completo di un DNA, solitamente richiesto per specie
-dalle quali non si ha ancora un genoma di riferimento.
+il sequenziamento completo di un DNA in casi particolarmente rari,
+solitamente per specie dalle quali non si ha ancora un genoma di riferimento
+o per la convalida di DNA ottenuti da metodi meno affidabili.
 
 Negli ultimi anni si stanno diffondendo le cosiddette NGS (Next Generation Sequencing),
 tecniche che permettono di ottenere una grande mole di dati
@@ -123,9 +124,7 @@ manipolazione ed ulteriore analisi.
 contenute in file GFA rappresentandole mediante una struttura a grafo.
 La gestione delle operazioni sul grafo avviene sfruttando una libreria
 preesistente: \emph{networkx}\cite{networkx}, per la quale vengono
-fornite le interfacce ai metodi.
-
-\pygfa inoltre permette l'attraversamento del grafo mediante iteratori
+fornite le interfacce ai metodi. \pygfa inoltre permette l'attraversamento del grafo mediante iteratori
 personalizzati, che considerano solamente archi rappresentanti un
 determinato tipo di connessione (\emph{dovetail overlap}) fra i nodi del
 grafo.
