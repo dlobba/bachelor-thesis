@@ -3,6 +3,9 @@ In questo breve capitolo verranno mostrati
 alcuni risultati di \pygfa \  evidenziando il tempo di calcolo
 richiesto per alcune delle operazioni che la libreria fornisce e misurando
 lo spazio di memoria richiesto per l'immagazzinamento del grafo.
+Verranno infine presentati dei grafici che evidenziano il
+confronto con la libreria Gfapy in termini di tempo di esecuzione
+e di spazio occupato.
 
 Tutte le operazioni sono state effettuate su una macchina virtuale
 Linux 64bit con le seguenti caratteristiche:
@@ -14,7 +17,7 @@ Linux 64bit con le seguenti caratteristiche:
 \end{itemize}
 
 Le misure sono state effettuate su grafi generati casualmente
-da uno script usato nello sviluppo di gfapy; il programma
+da uno script usato nello sviluppo di Gfapy; il programma
 crea una serie di nodi collegati tra loro da sovrapposizioni
 a coda di rondine, il risultato viene salvato in un file GFA1.
 Visto che i grafi sono generati casualmente è improbabile
@@ -94,8 +97,52 @@ raggiungeva, nell'ultimo grafo, circa i \SI{4.2}{\giga\byte} raggiungendo
 il limite di \SI{5.1}{\giga\byte} durante la ricerca dei percorsi lineari, operazione
 che si è rivelata essere la più dispendiosa fra quelle misurate.
 
+% Confronto Gfapy e PyGFA
+\section{Confronto con Gfapy}
+Nei seguenti grafici sono indicati i dati ottenuti eseguendo con le librerie
+Gfapy e \pygfa le operazioni di parsing ed estrazione degli elementi del
+grafo da un file gfa, estrazione dei dizionari contenenti le informazioni
+del grafo e calcolo delle componenti connesse; mostrando
+le differenze sia in termini di tempo di esecuzione (figura \ref{fig:comparison-times})
+che di spazio occupato dal grafo (figura \ref{fig:comparison-memory}).
+
+Per ottenere questi dati sono stati generati grafi casuali fino ad un limite massimo di cinquemila nodi
+e diecimila archi. Tale limite è dovuto a delle problematiche riscontrate con l'uso di Gfapy
+per grafi con numero di elementi maggiore, oltre il quale
+l'operazione di calcolo delle componenti connesse causa problemi dovuti
+probabilmente alla natura ricorsiva del metodo implementativo in Python.
+Come evidenziato dai grafici, il tempo di esecuzione relativo il parsing
+è maggiore in Gfapy, mentre il tempo richiesto per accedere ai dizionari
+contenenti gli elementi del grafo è pressoché costante in entrambe le librerie.
+Per quanto riguarda il calcolo delle componenti connesse \pygfa \ è nettamente
+più veloce. Dall'ultimo grafico è possibile notare come il
+consumo di memoria richiesto è all'incirca il medesimo.
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{comparison_times}
+\caption[Grafici dei tempi di esecuzione di Gfapy e \pygfa]{Grafici dei tempi di esecuzione di Gfapy e \pygfa.}
+\label{fig:comparison-times}
+\end{figure}
+\captionsetup{justification=justified, singlelinecheck=false}
+
+
+\captionsetup{justification=centering, singlelinecheck=false}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{comparison_memory}
+\caption[Grafico della memoria usata da Gfapy e \pygfa]{Grafico della memoria usata da Gfapy e \pygfa.}
+\label{fig:comparison-memory}
+\end{figure}
+\captionsetup{justification=justified, singlelinecheck=false}
+
+
+\clearpage
 \section{Conclusioni}
 \pygfa \  ha gli stessi punti di forza e di debolezza di NetworkX:
 le operazioni sono molto veloci, ma a costo della memoria occupata.
 Nonostante ciò, la rapidità di sviluppo e l'ottima efficienza di questa libreria
 rendono \pygfa \  un sistema performante molto facile da ampliare e modificare.
+Messo a confronto con Gfapy, la libreria riesce ad eseguire alcune operazioni
+in tempi decisamente migliori a parità di occupazione in memoria.
