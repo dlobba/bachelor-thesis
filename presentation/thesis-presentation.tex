@@ -94,9 +94,8 @@ Dipartimento di Informatica Sistemistica e Comunicazione\\[5pt]
  
  \section{I file GFA}
  \begin{frame}[fragile]{\secname}
- 
- 	\begin{columns}[onlytextwidth]
- 		\begin{column}{\textwidth}
+ 	\begin{columns}[b, onlytextwidth]
+ 		\begin{column}{0.7\textwidth}
  			\begin{itemize}
 				\item Due specifiche
 					\begin{itemize}
@@ -105,20 +104,22 @@ Dipartimento di Informatica Sistemistica e Comunicazione\\[5pt]
 					\end{itemize}					
 				\item ogni linea rappresenta un concetto
 					all'interno del grafo
- 			\end{itemize} 		
- 		
- 			\centering
- 			\begin{lstlisting}[basicstyle=\ttfamily\scriptsize, frame=single]	
-S	s1	10	*
-S	s2	10	*
-S	s3	10	*
-S	s4	10	*
-E	ls1s2	s1+	s2+	7	9$	0	2	*
-E	ls2s4	s2+	s4+	7	9$	0	2	*
-E	ls1s3	s1+	s3+	7	9$	0	2	*
-			\end{lstlisting}
+ 			\end{itemize}
+ 			\begin{figure}
+ 				\centering
+ 				\captionsetup{justification=centering}
+ 				\includegraphics[scale=0.30]{dov_ov_++}
+ 				\caption{Esempio di sovrapposizione\\a coda di rondine}
+ 			\end{figure}
  		\end{column}
- 		
+ 		\begin{column}{0.3\textwidth}
+ 			\begin{figure}
+ 				\centering
+ 				\captionsetup{justification=centering}
+ 				\includegraphics[scale=0.27]{generic-overlap}
+ 				\caption{Una generica sovrapposizione}
+ 			\end{figure}
+ 		\end{column}
  	\end{columns}
  \end{frame}
 %-------------------------------------------------------------------------------------------------------------------------
