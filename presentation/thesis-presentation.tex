@@ -56,16 +56,30 @@ Dipartimento di Informatica Sistemistica e Comunicazione\\[5pt]
 
 \section{Attività svolte}
 \begin{frame}{\secname}
-  \begin{columns}
-  	\begin{column}{\textwidth}
-		\begin{itemize}	  	
-	  		\item Studio delle specifiche GFA
-	  		\item Implementazione del sistema con NetworkX
-	  		\item Costruzione dei casi di test e verifica della copertura del codice
-	  		\item Benchmark per misurare le performance della libreria
-	  	\end{itemize}
-  	\end{column}
-  \end{columns}
+	\begin{columns}
+		\begin{column}{\textwidth}
+
+			\textbf{Motivazioni:}
+			\begin{itemize}
+				\item Offrire una piattaforma semplice
+				\begin{itemize}
+					\item da usare
+					\item da estendere
+				\end{itemize}
+				\item Algoritmi per grafi applicati al contesto genomico
+			\end{itemize}
+
+			\vspace{10px}
+
+			\textbf{Attività:}
+			\begin{itemize}
+				\item Studio delle specifiche GFA
+				\item Implementazione del sistema con NetworkX
+				\item Costruzione dei casi di test e verifica della copertura del codice
+				\item Benchmark per misurare le performance della libreria
+			\end{itemize}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \section{Cos'è il DNA?}
@@ -189,7 +203,7 @@ Dipartimento di Informatica Sistemistica e Comunicazione\\[5pt]
 \begin{frame}{\secname}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
-		
+
 			\begin{itemize}
 				\item Due serie di test dove:
 					\begin{itemize}
@@ -199,12 +213,12 @@ Dipartimento di Informatica Sistemistica e Comunicazione\\[5pt]
 				\item PyGFA ha una grossa occupazione in memoria
 				\item A parità di memoria occupata PyGFA è più prestante in termini di tempo
 			\end{itemize}
-		
+
 		\end{column}
 		\begin{column}{0.5\textwidth}
 			\centering
 			\includegraphics[height=0.45\textheight, width=\textwidth, keepaspectratio]{bench_singular}
-			
+
 			\centering
 			\includegraphics[height=0.45\textheight, width=\textwidth, keepaspectratio]{comparison}
 		\end{column}
@@ -214,31 +228,33 @@ Dipartimento di Informatica Sistemistica e Comunicazione\\[5pt]
 % --------------------------------------------------------------------------------------------------------------------------
 
 \section[Metodologia e strumenti]{Metodologia e strumenti di aiuto nello sviluppo}
-\begin{frame}{\secname}
+\begin{frame}[fragile]{\secname}
 	\begin{columns}
 		\begin{column}{0.6\textwidth}
 			\textbf{Metodologia:}
 			\begin{itemize}
-			
+
 				\item Extreme Programming
-				
+
 				\item Sviluppo basato sulle priorità
 					\begin{itemize}
 						\item si implementa subito
 						\item si implementa affiancati dai casi di test
 					\end{itemize}
 			\end{itemize}
-			
+
+			\vspace{10px}
+
 			\textbf{Strumenti usati per lo sviluppo:}
 			\begin{itemize}
 				\item Coverage.py
 					\begin{itemize}
-						\item usato con unittest per verificare la copertura dei casi di test
+						\item copertura dei casi di test
 					\end{itemize}
 				\item Pylint
 				\item Sphinx e Read the Docs
 					\begin{itemize}
-						\item estrazione della documentazione direttamente da codice
+						\item documentazione autogenerata
 						\item output in html con supporto mobile
 						\item hosting su piattaforma specifica
 					\end{itemize}
