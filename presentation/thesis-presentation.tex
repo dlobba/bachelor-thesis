@@ -241,15 +241,27 @@ E	ls1s3	s1+	s3+	7	9$	0	2	*
 
 % --------------------------------------------------------------------------------------------------
 
-\section{Strumenti di aiuto nello sviluppo}
+\section[Metodologia e strumenti]{Metodologia e strumenti di aiuto nello sviluppo}
 \begin{frame}{\secname}
 	\begin{columns}
-		\begin{column}{\textwidth}
+		\begin{column}{0.6\textwidth}
+			\textbf{Metodologia:}
+			\begin{itemize}
+			
+				\item Extreme Programming
+				
+				\item Sviluppo basato sulle priorità
+					\begin{itemize}
+						\item si implementa subito
+						\item si implementa affiancati dai casi di test
+					\end{itemize}
+			\end{itemize}
+			
+			\textbf{Strumenti usati per lo sviluppo:}
 			\begin{itemize}
 				\item Coverage.py
 					\begin{itemize}
 						\item usato con unittest per verificare la copertura dei casi di test
-						\item 96\% di copertura totale
 					\end{itemize}
 				\item Pylint
 				\item Sphinx e Read the Docs
@@ -259,6 +271,11 @@ E	ls1s3	s1+	s3+	7	9$	0	2	*
 						\item hosting su piattaforma specifica
 					\end{itemize}
 			\end{itemize}
+		\end{column}
+		\begin{column}{0.4\textwidth}
+			\begin{flushright}
+				\includegraphics[scale=0.55]{timebox}
+			\end{flushright}
 		\end{column}
 	\end{columns}
 \end{frame}
