@@ -5,7 +5,17 @@
 PyGFA è una libreria che opera su file rappresentanti 
 concetti biologici e descritti da apposite specifiche.
 
-Si sono studiate le specifiche e i concetti
+<!-- aggiunta: breve motivazione -->
+_______________________________________________________________________
+Il sistema è stato sviluppato per offrire una piattaforma
+stabile e facilmente estendibile in grado di operare
+con questa tipologia di file, inserendo le informazioni
+in una struttura a grafo ed offrendo una serie di operazioni
+tipiche di questa struttura, applicate ad un contesto genomico.
+_______________________________________________________________________
+<!-- fine aggiunta -->
+
+Per lo sviluppo del sistema si sono quindi studiate le specifiche e i concetti
 di DNA e di assemblaggio, si è implementata l'effettiva libreria
 verificandone funzionalità e qualità mediante strumenti appositi
 ed infine si sono effettuati dei benchmark per verificare
@@ -14,6 +24,7 @@ di dati, confrontandolo con una libreria esistente che rappresenta
 l'attuale stato dell'arte.
 
 ## Slide Cos'è il DNA
+
 Il DNA è il materiale che racchiude le informazioni necessarie
 per descrivere un organismo. E' composto da nucleotidi
 cui è possibile riferirsi mediante la singola base azotata che contengono:
@@ -49,7 +60,23 @@ Per questo vi è la seconda specifica, GFA2, meno restrittiva e più generica ch
 di descrivere le informazioni con il livello di dettaglio richiesto dall'utilizzatore (quindi
 sia di descrivere le informazioni con meno dettagli, sia con più dettagli).
 
-Questi file sono composti da linee aventi una formattazione predefinita; campi separati
+
+<!-- parte aggiunta: esempio di dovetail e di concetto rappresentabile in GFA2, ma non
+   in GFA1 -->
+_______________________________________________________________________
+Prendiamo in cosiderazione il concetto di sovrapposizione fra due sequenze.
+In GFA1 è possibile descrivere solo due tipi di sovrapposizione:
+uno in cui la sovrapposizione rappresenta un continuum fra due sequenze
+ed uno in cui una sequenza è interamente contenuta nell'altra.
+
+In GFA2 non vi è alcuna restrizione sulla tipologia di sovrapposizione che è
+possibile rappresentare. I casi descritti precedentemente vengono rappresentati
+con una particolare semantica ed inoltre è possibile specificare sovrapposizioni
+fra due punti qualsiasi delle sequenze. Tale flessibilità manca a GFA1.
+_______________________________________________________________________
+<!-- fine parte aggiunta -->
+
+In entrambe le specifiche i file sono composti da linee aventi una formattazione predefinita; campi separati
 da tabulazioni, ogni campo ha un significato e deve essere esplicitamente indicato.
 Ogni linea descrive un concetto specifico del grafo di assemblaggio (una sequenza,
 un insieme di sequenze, una sovrapposizione, un contenimento...).
@@ -123,7 +150,7 @@ come il tempo di esecuzione del calcolo delle componenti connesse
 sia nettamente più veloce in pygfa rispetto a gfapy, mantenendo
 un occupazione in memoria molto simile.
 
-## Slide Metodo di sviluppo
+## Slide Metodologia e strumenti di aiuto nello sviluppo
 
 Per lo sviluppo di PyGFA è stata adottata una metodologia extreme programming,
 con tempi di analisi brevi che hanno permesso di concentrarsi subito sull'implementazione
@@ -134,8 +161,6 @@ implementate.
 
 Queste attività si sono ripetute ciclicamente per tutto il periodo di sviluppo,
 integrando al termine di ciascuna iterazione una fase di refactoring del codice.
-
-## Slide Strumenti di aiuto nello sviluppo
 
 Nello sviluppo è fatto uso di strumenti di supporto per
 la verifica dei casi di test (Coverage.py) e per misurare la qualità globale
@@ -150,7 +175,7 @@ sito-web e mettendola in hosting su una piattaforma online specifica
 
 ## Slide Conclusioni
 
-PyGFA ha raggiunto una versione alpha stabile.
+PyGFA ha raggiunto una versione prossima alla 1.0 .
 Rimane da fare una fase di refactoring del codice più accurata.
 Tuttavia la libreria offre una piattaforma piuttosto solida che è possibile
 estendere facilmente con nuove funzionalità.
