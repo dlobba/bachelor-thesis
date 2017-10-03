@@ -71,7 +71,7 @@ ed uno in cui una sequenza è interamente contenuta nell'altra.
 
 In GFA2 non vi è alcuna restrizione sulla tipologia di sovrapposizione che è
 possibile rappresentare. I casi descritti precedentemente vengono rappresentati
-con una particolare semantica ed inoltre è possibile specificare sovrapposizioni
+con una particolare sintassi ed inoltre è possibile specificare sovrapposizioni
 fra due punti qualsiasi delle sequenze. Tale flessibilità manca a GFA1.
 _______________________________________________________________________
 <!-- fine parte aggiunta -->
@@ -150,11 +150,29 @@ come il tempo di esecuzione del calcolo delle componenti connesse
 sia nettamente più veloce in pygfa rispetto a gfapy, mantenendo
 un occupazione in memoria molto simile.
 
+<!-- aggiunta: slide aggiuntiva sul confronto delle librerie -->
+## Confronto delle funzionalità
+
+Dal punto di vista delle funzionalità entrambe le librerie permettono
+la gestione completa di file GFA.
+
+Gfapy opera mantenendo il concetto di linea, inoltre fornisce
+operazioni legate l'assemblaggio più avanzate.
+
+PyGFA invece astrae i dati contenuti nei file GFA, perdendo il concetto
+di linea e assegnandoli il ruolo di un elemento del grafo.
+Le operazioni che PyGFA offre rispecchiano la duplice visione del grafo,
+da una parte si hanno operazioni che considerano il grafo completa, mentre
+dall'altra ci sono operazioni che considerano il grafo ottenuto considerando
+solo archi che rappresentano sovrapposizioni a coda di rondine
+<!-- fine aggiunta>
+
+<!-- modifica: unione delle slide sulla metodologia e sugli strumenti di sviluppo-->
 ## Slide Metodologia e strumenti di aiuto nello sviluppo
 
 Per lo sviluppo di PyGFA è stata adottata una metodologia extreme programming,
 con tempi di analisi brevi che hanno permesso di concentrarsi subito sull'implementazione
-delle funzionalità cruciali del sistema, per poi estendere le funzionalità nelle fasi successive.
+delle funzioni cruciali del sistema, per poi estendere le funzionalità nelle fasi successive.
 In parallelo alla fase di sviluppo si è svolta
 la fase di test per verificare il corretto funzionamento delle parti di sistema che venivano
 implementate.
@@ -162,7 +180,7 @@ implementate.
 Queste attività si sono ripetute ciclicamente per tutto il periodo di sviluppo,
 integrando al termine di ciascuna iterazione una fase di refactoring del codice.
 
-Nello sviluppo è fatto uso di strumenti di supporto per
+Nello sviluppo si è fatto uso di strumenti di supporto per
 la verifica dei casi di test (Coverage.py) e per misurare la qualità globale
 del codice del sistema (Pylint), raggiungendo la copertura del 96% del
 codice.
@@ -171,7 +189,7 @@ Oltre a questi strumenti, si è utilizzato uno strumento per la generazione
 automatica della documentazione (Sphinx) rendendola fruibile mediante
 sito-web e mettendola in hosting su una piattaforma online specifica
 (Read the Docs).
-
+<!-- fine modifica -->
 
 ## Slide Conclusioni
 
