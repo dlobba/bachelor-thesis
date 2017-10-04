@@ -164,7 +164,7 @@ di linea e assegnandoli il ruolo di un elemento del grafo.
 Le operazioni che PyGFA offre rispecchiano la duplice visione del grafo,
 da una parte si hanno operazioni che considerano il grafo completa, mentre
 dall'altra ci sono operazioni che considerano il grafo ottenuto considerando
-solo archi che rappresentano sovrapposizioni a coda di rondine
+solo archi che rappresentano sovrapposizioni pure
 <!-- fine aggiunta>
 
 <!-- modifica: unione delle slide sulla metodologia e sugli strumenti di sviluppo-->
