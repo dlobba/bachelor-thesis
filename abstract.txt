@@ -1,0 +1,23 @@
+Progettazione ed implementazione di una libreria Python per la gestione di file GFA
+
+Desing and implentation of a Python library to manage GFA files.
+
+I file GFA contengono informazioni sull'assemblaggio del genoma.
+La specifica GFA è composta da due versioni, la prima si occupa
+principalmente di rappresentare informazioni di assemblaggio, mentre
+la seconda, più generica, permette di descrivere informazioni provenienti
+dalle fasi intermedie il processo di assemblaggio.
+PyGFA sfrutta una struttura a grafo per rappresentare queste informazioni
+permettendo di eseguire le classiche operazioni sui grafi nell'ambito
+dell'assemblaggio. La libreria si pone come base di sviluppo per futuri
+programmi che dovranno gestire i file GFA.
+
+GFA files contain genome assembly informations. The GFA specification
+is composed by two versions, the first one is mainly about asseembly
+informations representation while the second one is more generic and
+allows to describe informations coming from different intermediate steps
+involved in the assembly process.
+PyGFA use a graph data structure to represent these informations allowing
+to perform typical graph operations applied to the genome assembly context.
+The library is focused to provide a development base for future programs
+that need to manage GFA files.
